@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'eyewear.wsgi.application'
 import dj_database_url
 
 DATABASES = {
-  'default': dj_database_url.parse("postgres://deonx_user:inDaDoIuosqnoLO9aDAOlroVTHTiB7Dp@dpg-cn9hnv8l5elc7392k0e0-a.oregon-postgres.render.com/deonx")
+  'default': dj_database_url.parse("postgres://deonx_8078_user:cz07AIBCVRRkiHEVsiJG0gkD24e8q2mO@dpg-cniuf6tjm4es738ovkjg-a.oregon-postgres.render.com/deonx_8078")
 }
 
 
