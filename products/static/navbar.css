@@ -1,0 +1,229 @@
+nav{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;    
+    left: 0;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    background-color: black;
+    color: #fff;
+}
+.nav-toggle{
+    display: none;
+    color: #fff;
+}
+.my-logo{ 
+    position: relative;
+    left: 20px;
+    top:5px;
+}
+.logo{
+    width: 200px;
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+.links li{
+    display: inline-block;
+    padding: 10px;
+}
+.links a{
+    text-decoration: none;
+    color:#fff;
+    font-size: 1.2rem;
+    border-bottom: 3px solid transparent;
+    transition: 0.5s;
+}
+.links a:active{
+    border-bottom: 3px solid goldenrod;
+    width: 100%;
+    background-color: goldenrod;
+    color: #fff;
+    border-radius: 25px;
+}
+.links li:hover{
+    background-color: goldenrod;
+    border-radius: 25px;
+}
+.cart{
+    border: transparent;
+    background: transparent;
+    margin: 10px;
+    color: #fff;
+}
+.cart1{
+    display: none;
+    color: #fff;
+    background: transparent;
+    border: transparent;
+}
+.dropheader{
+    color: #fff;
+    font-size: 1.2rem;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content{
+    display: none;
+    position: absolute;
+    top: 5p;
+    background-color:orchid;
+    z-index: 1;
+}
+.dropdown-content a{
+    padding: 5px;
+    color: black;
+    text-align: center;
+    
+}
+.dropdown:hover .dropdown-content{
+    display:inline-block;
+}
+.account{
+    position: relative;
+}
+.account-dropdown{
+    display: none;
+    position: fixed; 
+    top: 100%; 
+    left: 0;
+    background-color:#312E46;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+    width:150px;
+    align-items: center;  
+}
+.account:hover .account-dropdown{
+    display: block;
+    position: absolute;
+}
+.account-dropdown ul{
+    display: block;
+}
+.account-dropdown button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}   
+.account-login-btn{
+    width: 90%;
+    border-radius: 12px;
+    background-color: darkgoldenrod;
+    color: #fff;
+    padding: 5px;
+    border: transparent;
+    margin: 10px;
+    font-size: 1.2rem;
+}
+.account-my-btn{
+    width: 90%;
+    border-radius: 12px;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    border: transparent;
+    margin: 10px;
+    font-size: 1.2rem;
+}
+.account-my-btn:hover{
+    border-bottom: 3px solid goldenrod;
+    width: 100%;
+    background-color: goldenrod;
+    color: #fff;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.account-my-btn a{
+    text-decoration: none;
+    color: black;
+}
+.account-my-btn a:hover{
+    color: #fff;
+}
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 100%;
+    padding: 10px;
+    transform: translate(-100%);
+    transition: all 0.3s linear;
+    background: #f1e5e5;
+    z-index: 2;
+    align-items: center;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+.show-sidebar{
+    transform: translate(0);
+}
+.mylinks a{
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: black;
+    text-align: left;
+}
+.mylinks li{
+    list-style-type: none;
+    padding: 15px;
+}
+.our-logo{
+    margin-top: 40px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.close-btn{
+    color: blue;
+    background:transparent;
+    border: transparent;
+}
+.search-input{
+    width: 150px;
+    border-radius: 25px;
+    margin: 5px;
+    padding: 10px;
+}
+.search-btn{
+    border-radius: 25px;
+    padding: 10px;
+    background-color: #fff;
+    color: black;
+    border: transparent;
+    width:60px;
+}
+.search-btn:hover{
+    background-color: goldenrod;
+    color: #fff;
+}
+@media screen and (max-width:992px) {
+    .nav-toggle{
+        display: block;
+        border: transparent;
+        background: transparent;
+        margin: 10px;
+    }
+    .logo{
+        width: 120px;
+    }
+    .cart{
+        padding: 0;
+    }
+    .cart1{
+        display: block;
+    }
+    .links{
+        display: none;
+    }
+}
+@media screen and (max-width:550px) {
+    .sidebar{
+        width: 100%;
+    }
+}

@@ -1,0 +1,42 @@
+{%load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="author" content="Thomas">
+        <meta charset="UTF-8">
+        <!--fontawesome-->
+        <link rel="stylesheet" href="{% static 'fontawesome-free-6.2.0-web/css/all.min.css'%}">
+        <!--stylesheet-->
+        <link rel="stylesheet" href="{% static 'base.css'%}">
+        <!--jquery-->
+        <script src="{% static 'jquery/lib/jquery-3.6.0.min.js'%}"></script>
+    </head>
+    <body>
+        {% include 'main/navbar.html'%}
+        <!-- Background container for navbar and welcome section -->
+        <div class="background-container">
+            {% block background %}
+            {% endblock %}
+        </div>
+
+        {%block content%}
+        {%endblock%}
+        {%include 'main/footer.html'%}
+
+        <script>
+            $(document).ready(function(){
+                var slideIndex = 0;
+                showSlides();
+        
+                function showSlides() {
+                    var slides = $(".slide");
+                    slides.hide();
+                    slideIndex = (slideIndex + 1) % slides.length;
+                    slides.eq(slideIndex).fadeIn();
+                    setTimeout(showSlides, 2000); // Change image every 10 seconds
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,163 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--stylesheet-->
+        <link rel="stylesheet" href="{% static 'navbar.css'%}">
+    </head>
+    <body>
+        <nav>
+            <div class="my-logo">
+                <img src="{% static 'images/White_Deox_Logo@4x.png'%}" class="logo">
+            </div>
+            <ul class="links">
+                <li>
+                    <form method=POST action ="{% url 'search-products'%}">
+                        {% csrf_token%}
+                        <input type="search" name="searched" class="search-input" placeholder="Search Products">
+                        <button type="submit" class="search-btn">Search</button>
+                    </form>
+                </li>
+                <li>
+                    <a href="{% url 'index'%}">HOME</a>
+                </li>
+                <li>
+                    <a href="{%url 'about'%}">ABOUT</a>
+                </li>
+                <li>
+                    <a href="{%url 'contact'%}">CONTACT</a>
+                </li>
+                <li>
+                    <a href="{%url 'menu'%}">MENU</a>
+                </li>
+                <li class="account">
+                    <a href="#"> Account
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                    <div class="account-dropdown">
+                        <button class="account-login-btn">
+                            {%if user.is_authenticated%}
+                                    <a href="{% url 'logout'%}">LOGOUT</a>
+                            {%else%}
+                                    <a href="{% url 'login'%}">LOGIN</a>
+                            {%endif%}
+                        </button>
+                        <hr>
+                        <button class="account-my-btn">
+                            <i class="fa-solid fa-user"></i>
+                            {%if user.is_authenticated%}
+                                    <a href="{% url 'my-account'%}">My Account</a>
+                            {%else%}
+                                    <a href="{% url 'login'%}">My Account</a>
+                            {%endif%}
+                        </button>
+                        <button class="account-my-btn">
+                            <i class="fa-solid fa-box"></i>
+                            {%if user.is_authenticated%}
+                                    <a href="{% url 'my-orders'%}">My Orders</a>
+                            {%else%}
+                                    <a href="{% url 'login'%}">My Orders</a>
+                            {%endif%}
+                        </button>
+                        {%if user.is_superuser%}
+                            <button class="account-my-btn">
+                                <a href="{% url 'customers'%}">ADMIN</a>
+                            </button>
+                            <button class="account-my-btn">
+                                <a href="{%url 'list-team'%}">TEAM</a>
+                            </button>
+                        {%endif%}
+                    </div>
+                </li>
+                <li>
+                    <button class="cart">
+                        {%if user.is_authenticated%}
+                            <a href="{%url 'cart'%}">
+                                <i class="fa-solid fa-shopping-cart"></i>
+                            </a>
+                        {%else%}
+                            <a href="{%url 'login'%}">
+                            <i class="fa-solid fa-shopping-cart"></i>
+                            </a>
+                        {%endif%}
+                    </button>   
+                </li>
+            </ul>
+            <button class="cart1">
+                {%if user.is_authenticated%}
+                    <a href="{%url 'cart'%}">
+                        <i class="fa-solid fa-shopping-cart fa-2x"></i>
+                    </a>
+                {%else%}
+                    <a href="{%url 'login'%}">
+                    <i class="fa-solid fa-shopping-cart fa-2x"></i>
+                    </a>
+                {%endif%}
+            </button>   
+            <button class="nav-toggle">
+                <i class="fa fa-bars fa-2x"></i>
+            </button>
+        </nav>
+        <aside class="sidebar">
+            <br><br>
+            <ul class="mylinks">
+                <li>
+                    <form method=POST action ="{% url 'search-products'%}">
+                        {% csrf_token%}
+                        <input type="search" name="searched" class="search-input" placeholder="Search Products">
+                        <button type="submit" class="search-btn">Search</button>
+                    </form>
+                </li>
+                <li>
+                    <a href="{% url 'index'%}">HOME</a>
+                </li>
+                <li>
+                    <a href="{%url 'about'%}">ABOUT</a>
+                </li>
+                <li>
+                    <a href="{%url 'contact'%}">CONTACT</a>
+                </li>
+                <li>
+                    <a href="{% url 'menu'%}">MENU</a>
+                </li>
+                <li class="account">
+                    <a href="#"> Account
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                    <div class="account-dropdown">
+                        <button class="account-login-btn">
+                            {%if user.is_authenticated%}
+                                    <a href="{% url 'logout'%}">LOGOUT</a>
+                            {%else%}
+                                    <a href="{% url 'login'%}">LOGIN</a>
+                            {%endif%}
+                        </button>
+                        <hr>
+                        <button class="account-my-btn">
+                            <i class="fa-solid fa-user"></i>
+                            {%if user.is_authenticated%}
+                                    <a href="{% url 'my-orders'%}">My Orders</a>
+                            {%else%}
+                                    <a href="{% url 'login'%}">My Orders</a>
+                            {%endif%}
+                        </button>
+                        <button class="account-my-btn">
+                            <i class="fa-solid fa-box"></i>
+                            Orders
+                        </button>
+                        {%if user.is_superuser%}
+                            <button class="account-my-btn">
+                                <a href="{% url 'customers'%}">ADMIN</a>
+                            </button>
+                            <button class="account-my-btn">
+                                <a href="{%url 'list-team'%}">TEAM</a>
+                            </button>
+
+                        {%endif%}
+                    </div>
+                </li>
+            </ul>
+        </aside>
+        <script src="{% static 'navbar.js'%}"></script>
+    </body>
+</html>

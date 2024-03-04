@@ -1,0 +1,101 @@
+{% extends 'main/utilities-about.html' %}
+{%load static%}
+{%block content%}
+
+<div class="about-header">
+    <!-- <img src="{% static 'images/659d2ff6d4836a19ed9210f7_Rectangle 63.webp' %}" class="about-hero"/> -->
+    <h2>ABOUT US</h2>
+</div>
+<div class="story-container">
+    <div class="img-container">
+        <div class="div1">
+            <h1>2 +</h1>
+            <p>Years of Experience</p>
+        </div>
+        <img src="{% static 'images/659f70ef89da571efbd73bb1_image 3-p-500.webp'%}" alt="our restaurant" class="img-1">
+        <img src="{% static 'images/659f70ef264867adbc5b54e8_image 1-p-500.webp'%}" alt="our restaurant" class="img-2">
+        <img src="{% static 'images/659f70ef6b79b2113c709e24_image 2-p-500.webp'%}" alt="our restaurant" class="img-3">
+    </div>
+    <div class="our-story">
+        <h2>Our Story</h2>
+        <p>Pizza ipsum dolor meat lovers buffalo. Tomato mayo red black pork meatball lasagna lot. Buffalo peppers bell buffalo Philly pesto party black thin. String cheese hand marinara stuffed meatball garlic stuffed. NY lot Philly bacon bell red peppers. Garlic extra fresh and pork. Burnt onions steak green pizza pan Chicago lot NY. Tomato chicken Chicago beef bbq ricotta platter broccoli. Meatball sautéed ricotta bbq.</p>
+        <button class="book-table">
+            <a href="{%url 'contact'%}">
+                Contact Us
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+        </button>
+    </div>
+</div>
+<div class="story-container1">
+    <div class="our-story">
+        <h2>Culinary Excellence</h2>
+        <p>Led by our talented and dedicated chefs, the heart of TNC's success lies in the kitchen. Every dish is a masterpiece, crafted with precision and passion. We take pride in sourcing the finest ingredients, ensuring that each bite is a harmonious blend of freshness and flavor.</p>
+        <button class="book-table">
+            <a href="{%url 'contact'%}">
+                Reserve Your Table
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+        </button>
+    </div>
+    <img src="{% static 'images/659f8be78c491caeb4d237e7_Rectangle 73-p-800.webp'%}" class="story-img">
+</div>
+<br><br>
+<center>
+    <h1>MEET OUR TEAM</h1>
+</center>
+<div class="team-container">
+    {%for member in teams%}
+        <div class="indiv-team">
+            <img src={{member.profile_image}} class="team-img"/>
+            <h4>{{member.profile_occupation}}</h4>
+            <h2>{{member.profile_name}}</h2>
+            <p>{{member.quote}}</p>
+            <hr>
+        </div>
+    {%endfor%}
+</div>
+<br>
+<center>
+    <h1>Instagram Gallery</h1>
+</center>
+<br>    
+<div class="gallery-container">
+    <div class="more-gallery">
+        <img src="{%static 'images/659bce1e62cac1b1a506a857_Rectangle 19.webp'%}" class="image2">
+        <div class="my-img">
+            <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+        </div>
+    </div>
+    <div class="more-gallery">
+        <img src="{%static 'images/659bce1e4deb5ad4e1eb117e_wepik-export-20240101084202rP9g 1.webp'%}" class="image3">
+        <div class="my-img">
+            <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+        </div>
+    </div>
+    <div class="more-gallery">
+        <img src="{%static 'images/659bce1dd1071c21f7950b12_Rectangle 22.webp'%}" class="image4">
+        <div class="my-img">
+            <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+        </div>
+    </div>
+    <div class="more-gallery">
+        <img src="{%static 'images/659bce1fb53dc2c26218efb3_Rectangle 21.webp'%}" class="image5">
+        <div class="my-img">
+            <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+        </div>
+    </div>
+    <div class="more-gallery">
+        <img src="{%static 'images/659bce1eb02bb26c005fc6cc_Rectangle 23.webp'%}" class="image6">
+        <div class="my-img">
+            <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+        </div>
+    </div>
+    <div class="more-gallery">
+        <img src="{%static 'images/659bb29c133d5685daf6a0ce_Rectangle 35.png'%}" class="image7">
+        <div class="my-img">
+            <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+        </div>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,20 @@
+{%extends 'authenticate/home.html'%}
+{%load static%}
+
+{%block content%}
+<br>
+    <img src="{% static 'images/White_Deox_Logo@4x.png'%}" class="logo">
+    <button class="back-btn">
+        <a href="{% url 'index'%}"><i class="fa-solid fa-chevron-left "></i>
+            BACK HOME
+        </a>  
+    </button>
+<center>
+    <h1>Register Profile Details</h1>
+    <form action="" method="POST" enctype="multipart/form-data" class="myform">
+        {%csrf_token%}
+        {{form.as_div}}
+        <input type="submit" value="REGISTER" class="my-submit">
+    </form>
+</center>
+{%endblock%}

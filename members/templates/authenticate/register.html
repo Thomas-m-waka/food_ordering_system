@@ -1,0 +1,38 @@
+{%extends 'authenticate/baze.html'%}
+{%load static%}
+{%block content%}
+    {%if form.errors %}
+        <p>There was an error with your form ...</p>
+    {%endif%}
+
+    <style>
+.register-form{
+    color:black;
+    border:none;
+    
+
+}
+
+    </style>
+    <br>
+    <img src="{% static 'images/White_Deox_Logo@4x.png'%}"  class="logo">
+    <button class="back-btn">
+        <a href="{% url 'index'%}"><i class="fa-solid fa-chevron-left "></i>
+            BACK HOME
+        </a>  
+    </button>
+    <center>
+        <h1><u><b>REGISTER HERE</b></u></h1>
+<div class="register-form">
+    <form action="{% url 'register'%}" method="POST" class="myform">
+        {%csrf_token%}
+        {{form.as_div}}
+        <input type="submit" value="REGISTER" class="my-submit">
+    </form>
+</div>
+    </center>
+    <div class="div-1">
+        <h3>Already have an account?</h3>
+        <a href="{%url 'login'%}">LOGIN</a>
+    </div>
+{%endblock%}

@@ -1,0 +1,30 @@
+{%extends 'authenticate/home.html'%}
+{%load static%}
+
+{%block content%}
+<br>
+    <img src="{% static 'images/White_Deox_Logo@4x.png'%}" class="logo">
+    <button class="back-btn">
+        <a href="{% url 'index'%}"><i class="fa-solid fa-chevron-left "></i>
+            BACK HOME
+        </a>  
+    </button>
+<center>
+    <div class="verification">
+        <h1><u>Verification Page</u></h1>
+        <form action="{%url 'enter-code'%}" method="post"> 
+            {% csrf_token %}
+            <input type="hidden" name="username" value="{{ username }}">
+            <label for="verification_code">Enter verification code:</label><br>
+            <input type="text" id="verification_code" name="verification_code"><br><br>
+            <button type="submit" class="my-button">Verify</button>
+        </form>
+    </div>
+</center>
+<script>
+    // JavaScript function to display an alert box with the success message
+    window.onload = function() {
+        alert("Verification code sent successfully. Please check your phone and enter the code below.");
+    };
+</script>
+{%endblock%}

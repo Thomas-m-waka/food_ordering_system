@@ -1,0 +1,22 @@
+{% extends 'main/admin.html' %}
+{%load static%}
+
+{%block content%}
+    <center>ALL REVIEWS</center>
+    <div class="cart-items">
+        {%for review in review_item%}
+        <div class="items-cont">
+            <img src={{review.review_product.product_image.url}} class="item-img">
+            <div class="items">
+                <p>Customer: {{review.customer.username}}</p>
+                <p>Description: {{review.description}}</p>
+                <img src={{review.review_image.url}} class="review-img">
+            </div>
+        </div>
+            {% empty %}
+            <center>
+                <p>No Current Orders</p>
+            </center>
+        {%endfor%}
+    </div>
+{%endblock%}

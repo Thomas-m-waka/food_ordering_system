@@ -1,0 +1,268 @@
+html{
+    background-color:#fff;
+    color: black;
+}
+/*About page*/
+.about-header{
+    background: url('images/659d2ff6d4836a19ed9210f7_Rectangle\ 63.webp');
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;   
+}
+.story-container{
+    margin:10px;
+    padding: 5px;
+    display:  flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: black;
+}
+.img-container{
+    width: 50%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin: 10px;
+}
+.div1{
+    text-align: center;
+}
+.div1 h1{
+    color: rgb(155, 137, 91);
+    font-size: 6rem;
+}
+.div1 p{
+    font-size: 1.2rem;
+}
+.img-1{
+    max-width: 100%;
+    padding: 5px;
+    border-top-right-radius:35px;
+}
+.img-2{
+    width: 95%;
+    padding: 5px;
+    height: 70%;
+    border-top-right-radius:35px;
+}
+.img-3{
+    max-width: 100%;
+    padding: 5px;
+    border-bottom-right-radius:35px;
+}
+.our-story{
+    padding: 20px;
+    margin-top: 50px;
+    color: black;
+}
+.our-story h2{
+    font-size: 4rem;
+}
+.our-story p{
+    font-size: 1.5rem;
+    color:black;
+}
+.book-table{
+    padding: 10px;
+    color: #fff;
+    background-color:rgb(143, 125, 78);
+    border: none;
+    font-size: 1.2rem;
+    border-radius: 8px;
+}
+.book-table a{
+    text-decoration: none;
+    color: #fff;
+}
+.story-container1{
+    margin:10px;
+    padding: 5px;
+    display:  flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: black;
+}
+.gallery-container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin: 10px;
+    position: relative;
+}
+.more-gallery{
+    position: relative;
+}
+
+.my-img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+.gallery-div:hover .my-img{
+    opacity: 1;
+    color: #fff;
+}
+.more-gallery:hover .my-img{
+    opacity: 1;
+    color: #fff;
+}
+.gallery-div:hover .image1{
+    opacity: 0.5;
+}
+.more-gallery:hover .image2{
+    opacity: 0.5;
+}
+.more-gallery:hover .image3{
+    opacity: 0.5;
+}
+.more-gallery:hover .image4{
+    opacity: 0.5;
+}
+.more-gallery:hover .image5{
+    opacity: 0.5;
+}
+.image2{
+    max-width: 90%;
+    margin-bottom: 5px;
+    position: relative;
+}
+.image3{
+    max-width: 90%;
+    position: relative;
+}
+.image4{
+    max-width: 90%;
+    position: relative;
+}
+.image5{
+    max-width: 90%;
+    position: relative;
+}
+.image6{
+    max-width: 90%;
+    position: relative;
+}
+.image7{
+    max-width: 90%;
+    position: relative;
+}
+.our-team{
+    background-color: black;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.our-team h2{
+    font-size: 2rem;
+}
+.our-team a{
+    color: #fff;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+.our-team h4{
+    margin-left: 20px;
+}
+.team-img{
+    max-width: 30%;
+}
+.team-container{
+    background-color: black;
+    color: #fff;
+    display: grid;
+    grid-template-columns: repeat(3,2fr);
+}
+.indiv-team{
+    margin: 10px;
+    padding: 10px;
+}
+.indiv-team img{
+    max-width: 80%;
+}
+.indiv-team p{
+    font-size: 1.2rem;
+}
+@media screen and (max-width:992px) {
+    .story-container{
+        flex-direction: column;
+        margin: 0;
+    }
+    .img-container{
+        width: 100%;
+    }
+    .about-header{
+        width: 100%;
+        height: 200px;
+    }
+    .gallery-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .team-container{
+        grid-template-columns: repeat(1,2fr);
+    }
+    .story-container1{
+        flex-direction: column-reverse;
+    }
+    .our-story{
+        margin-top: 10px;
+    }
+}
+@media screen and (max-width:550px) {
+    .about-header{
+        width: 100%;
+        height: 150px;
+        
+    }
+    .about-header h1{
+        font-size: 1.5rem;
+    }
+    .about-header p{
+        font-size: medium;
+    }
+    .about-btn{
+        padding: 10px;
+    }
+    .story-container{
+        flex-direction: column;
+    }
+    .team-img{
+        max-width: 50%;
+        border-radius: 25px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .gallery-container{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .image1{
+        max-width: 95%;
+    }
+    .image2{
+        max-width: 95%;
+    }
+    .image3{
+        max-width: 95%;
+    }
+    .image4{
+        max-width: 95%;
+    }
+    .image5{
+        max-width: 95%;
+    }
+    .image6{
+        max-width: 95%;
+    }
+    .image7{
+        max-width: 95%;
+    }
+}

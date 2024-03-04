@@ -1,0 +1,15 @@
+{%extends 'authenticate/home.html'%}
+{%load static%}
+
+{%block content%}
+{%include 'main/navbar.html'%}
+<br><br><br><br>
+<center>
+    <h2>Update Profile Details</h2>
+    <form action="{% url 'update-profile'%}" method="POST" class="myform">
+        {%csrf_token%}
+        {{form.as_div}}
+        <input type="submit" value="Update Profile" class="my-submit">
+    </form>
+</center>
+{%endblock%}

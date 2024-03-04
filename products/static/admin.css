@@ -1,0 +1,198 @@
+html{
+    background-color: #f1e5e5;
+    color: black;
+}
+table{
+    width: 70%;
+}
+table,th, td{
+    padding: 15px;
+    margin: 10px;
+    text-align: center;
+    border: 1px solid gray;
+}
+.my-services{
+    margin: 100px;
+    padding: auto;
+    border: 1px solid gray;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.desc{
+    padding: 10px;
+}
+.my-img{
+    width: 250px;
+    height: 200px;
+    margin: 10px;
+}
+.update-btn{
+    background-color: olive;
+    padding: 5px;
+    border: transparent;
+    border-radius: 25px;
+    width: 40%;
+}
+.update-btn a{
+    text-decoration: none;
+    color: #fff;
+}
+.delete-btn{
+    background-color: red;
+    padding: 5px;
+    border: transparent;
+    border-radius: 25px;
+    width: 40%;
+}
+.delete-btn a{
+    text-decoration: none;
+    color: #fff;
+}
+.update-review-btn{
+    background-color: olive;
+    padding: 10px;
+    border: transparent;
+    border-radius: 25px;
+    width: 40%;
+}
+.update-review-btn a{
+    text-decoration: none;
+    color: #fff;
+}
+.add-product{
+    float: right;
+    padding: 15px;
+    background-color: olive;
+    border: transparent;
+    border-radius: 25px;
+}
+.add-product a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+}
+.myform input{
+    width: 30%;
+    padding: 10px;
+    border-radius: 25px;
+    margin: 5px;
+}
+.myform textarea{
+    width: 30%;
+    border-radius: 25px;
+    padding: 10px;
+}
+.myform label{
+    text-decoration:none;
+}
+.mysubmit{
+    background-color: goldenrod;
+    color: #fff;
+    border: transparent;
+}
+.cart-items{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    justify-content: space-between;
+}
+.item-img{
+    width: 350px;
+    height: 200px;
+    border-radius: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.items-cont{
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid goldenrod;
+    border-radius: 25px;
+    align-items: center;
+}
+.items{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.product-info{
+    padding: 10px;
+}
+.btn-container{
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.order-category{
+    padding: 5px;
+    margin: 5px;
+    background:transparent;
+    color: black;
+    border-radius: 25px;
+    border: transparent;
+}
+.order-category a{
+    text-decoration: none;
+    color:black;
+    font-size: 1rem;
+}
+.link-img{
+    width: 100px;
+    border-radius: 50%;
+}
+.review-img{
+    max-width: 20%;
+    border-radius: 50%;
+}
+.team-img{
+    max-width: 30%;
+    padding: 10px;
+    border-radius: 25px;
+}
+@media screen and (max-width:550px) {
+    table, th, td{
+        margin: 5px;
+        padding: 10px;
+    }
+    .add-product{
+        float: unset;
+    }
+    .my-services{
+        flex-direction: column-reverse;
+        margin: 20px;
+    }
+    .my-img{
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    .cart-items{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .items{
+        flex-direction: column;
+        align-items: center;
+    }
+    .product-info{
+        padding: 0;
+    }
+    .link-img{
+        width: 100px;
+    }
+    .team-img{
+        max-width: 80%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .myform input{
+        width: 50%;
+    }
+    .myform textarea{
+        width:50%;
+    }
+}

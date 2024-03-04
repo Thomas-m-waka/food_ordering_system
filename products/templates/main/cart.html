@@ -1,0 +1,52 @@
+{% extends 'authenticate/home.html' %}
+{%load static%}
+
+{%block content%}
+{%include 'main/navbar.html'%}
+<br><br><br><br>
+    <div class="cart-header">
+        <h2>Your Cart</h2>
+    </div>
+    {% if is_cart_empty %}
+    <br><br>
+        <div class="cart-center">
+            <h2>No Item in Your Cart</h2>    
+            <button>
+            <a href="{%url 'menu'%}"> Shop Today
+                <i class="fa-solid fa-box"></i>
+            </a>
+            </button>
+        </div>
+    {%else%}
+        <div class="cart-items">
+            {%for cart in cart_items %}
+                
+                    <div class="items">
+                        <img src={{cart.product.product_image.url}} class="item-img">
+                        <div class="items-desc">
+                            <p>Product Name: {{cart.product.product_name}}</p>
+                            <p>Price: Kshs: {{cart.price}}</p>
+                            <div class="quantity-div">
+                                <p>Quantity: {{cart.quantity}}</p>
+                                <button class="update-quantity">
+                                    <a href="{% url 'update-quantity' cart.id %}" >Update</a>
+                                </button>
+                            </div>
+                            <p>Total: Kshs: {{cart.total}}</p>
+
+                            <button class="cart-remove">
+                                <a href="{%url 'remove-from-cart' cart.id %}">Remove From Cart</a>
+                            </button>
+                        </div>
+                    </div>
+            {%endfor%}
+                <div class="totals">
+                    <p id="my-total">Total:</p>
+                    <p id="actual-total"> Kshs: {{total}}</p>
+                </div>
+                <button class="order-all">
+                    <a href="{% url 'order-from-cart'%}">Order</a>
+                </button>
+        </div>
+    {%endif%}
+{%endblock%}

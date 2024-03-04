@@ -1,0 +1,35 @@
+{%extends 'authenticate/home.html'%}
+{%load static%}
+{%block content%}
+{%include 'main/navbar.html'%}
+<br><br><br><br>
+<center>
+    <h2>My Profile</h2>
+    <hr>
+</center>
+<div class="profile">
+    <div class="profile-div">
+        {% if profile.profile_image %}
+            <img src="{{ profile.profile_image.url }}" class="profile-img">
+        {% else %}
+            <img src="{% static 'images/images.png' %}" class="profile-img">
+        {% endif %}
+        <h2>Welcome,{{ user_profile.username }}</h2>
+        <h5>Email: {{user_profile.email}}</h5>
+        <h5>Name: {{user_profile.first_name}}</h5>
+        <h5>Phone Number:{{profile.mobile}}</h5>
+    </div>
+    <div class="address-div">
+        <h3>Address Details</h3>
+        <h5>Residential Area: {{profile.address}}</h5>
+        <h5>Block:{{profile.block}}</h5>
+        <h5>Room:{{profile.room}}</h5>
+    </div>
+</div>
+<center>
+    <br>
+    <button class="my-button">
+        <a href="{%url 'update-profile'%}">Update User Profile</a>
+    </button>
+</center>
+{%endblock%}

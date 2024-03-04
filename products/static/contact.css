@@ -1,0 +1,259 @@
+.contact-header{
+    background: url('images/659d2ff6d4836a19ed9210f7_Rectangle\ 63.webp');
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;   
+}
+.contact-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 50px;
+}
+.div1{
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(241, 230, 196);
+    margin: 10px;
+    width: 300px;
+}
+.div2{
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(241, 230, 196);
+    margin: 10px;
+    width: 300px;
+}
+.div3{
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(241, 230, 196);
+    margin: 10px;
+    width: 300px;
+}
+.div1, .div2, .div3 h3{
+    font-size: 2.5rem;
+}
+.div1, .div2, .div3 p{
+    font-size: 1.2rem;
+}
+.contacts-div{
+    text-align: center;
+    margin: 20px;
+}
+.contact-form{
+    width: 70%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color:rgb(240, 213, 204) ;
+    border-radius: 25px;
+}
+.my-inputs{
+    width: 500px;
+    padding: 20px;
+    margin: 10px;
+    border: transparent;
+    border-radius: 25px;
+    background-color: #fff;
+    color: black;
+    font-size: 1.2rem;
+}
+.my-textarea{
+    padding: 5px;
+    margin: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    border: transparent;
+    border-radius: 25px;
+    background-color:#fff;
+    color: black;
+    font-size: 1.2rem;
+}
+.my-submit{
+    padding: 20px;
+    border: transparent;
+    border-radius: 25px;
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:rgb(175, 121, 104);
+    color: #fff;
+}
+.our-faqs{
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.general-q h2{
+    font-size: 3rem;
+}
+.general-q h3{
+    font-size: 2rem;
+}
+.general-q p{
+    font-size: 1.2rem;
+}
+.general-img{
+    max-width:50%;
+}
+.gallery-container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin: 10px;
+    position: relative;
+}
+.more-gallery{
+    position: relative;
+}
+
+.my-img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+.gallery-div:hover .my-img{
+    opacity: 1;
+    color: #fff;
+}
+.more-gallery:hover .my-img{
+    opacity: 1;
+    color: #fff;
+}
+.gallery-div:hover .image1{
+    opacity: 0.5;
+}
+.more-gallery:hover .image2{
+    opacity: 0.5;
+}
+.more-gallery:hover .image3{
+    opacity: 0.5;
+}
+.more-gallery:hover .image4{
+    opacity: 0.5;
+}
+.more-gallery:hover .image5{
+    opacity: 0.5;
+}
+.image2{
+    max-width: 90%;
+    margin-bottom: 5px;
+    position: relative;
+}
+.image3{
+    max-width: 90%;
+    position: relative;
+}
+.image4{
+    max-width: 90%;
+    position: relative;
+}
+.image5{
+    max-width: 90%;
+    position: relative;
+}
+.image6{
+    max-width: 90%;
+    position: relative;
+}
+.image7{
+    max-width: 90%;
+    position: relative;
+}
+
+
+@media screen and (max-width:992px) {
+    .contact-header{
+        width: 100%;
+        height: 200px;
+    }
+    .contact-info{
+        margin: 10px;
+    }
+    .div1, .div2,.div3{
+        width: 400px;
+    }
+    .gallery-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .contact-form{
+        margin-top: 10px;
+    }
+}
+@media screen and (max-width:550px) {
+    .contact-header{
+        width: 100%;
+        height: 150px;
+    }
+    .contact-info{
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+        margin: 20px;
+    }
+    .div1,.div2,.div3{
+        width: 300px;
+    }
+    .contact-form{
+        width: 400px;
+    }
+    .my-inputs{
+        width: auto;
+    }
+    .my-submit{
+        width: 200px;
+    }
+    .my-textarea{
+        width: auto;
+    }
+    .our-faqs{
+        flex-direction: column;
+    }
+    .general-img{
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        display: block;
+        max-width: 80%;
+    }
+    .our-faqs h2{
+        font-size: 2rem;
+    }
+    .gallery-container{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .image1{
+        max-width: 95%;
+    }
+    .image2{
+        max-width: 95%;
+    }
+    .image3{
+        max-width: 95%;
+    }
+    .image4{
+        max-width: 95%;
+    }
+    .image5{
+        max-width: 95%;
+    }
+    .image6{
+        max-width: 95%;
+    }
+    .image7{
+        max-width: 95%;
+    }
+}
