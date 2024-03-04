@@ -25,25 +25,7 @@
         </h3>
     </div>
 </div>
-<div class="contacts-div">
-    <h2>Get in Touch with DEOX</h2>
-    <div class="contact-form">
-        <br><br>
-        <form method=POST action="{%url 'send-message'%}">
-            {% csrf_token %}
-            <input type="text" name="full-name" placeholder="Full Name" class="my-inputs">
-            <br>
-            <input type="text" name="phone" placeholder="Contact Number" class="my-inputs">
-            <br>
-            <input type="email" name="email" placeholder="Email Address" class="my-inputs">
-            <br>
-            <textarea cols="20" rows="8" placeholder="Please Type Your Message Here..." class="my-textarea"></textarea>
-            <br>
-            <input type="submit" value="SEND MESSAGE" class="my-submit">
-            <br>
-        </form>
-    </div>
-</div>
+
 <div class="our-faqs">
     <div class="general-q">
         <h2>General Questions</h2>
