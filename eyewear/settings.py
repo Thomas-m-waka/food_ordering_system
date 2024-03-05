@@ -51,7 +51,6 @@ PHONENUMBER_DEFAULT_REGION = 'KE'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -84,10 +83,10 @@ WSGI_APPLICATION = 'eyewear.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 import dj_database_url
-database_url = os.environ.get('DATABASES')
+
 
 DATABASES = {
-  'default': dj_database_url.parse(database_url)
+  'default': dj_database_url.parse("postgres://deonx_8078_user:cz07AIBCVRRkiHEVsiJG0gkD24e8q2mO@dpg-cniuf6tjm4es738ovkjg-a/deonx_8078")
 }
 
 
