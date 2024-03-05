@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'eyewear.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 import dj_database_url
-database_url = os.environ.get('DATABASE')
+database_url = os.environ.get('DATABASES')
 
 DATABASES = {
   'default': dj_database_url.parse('database_url')
