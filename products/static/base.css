@@ -1,42 +1,81 @@
 html{
     background-color: #fff;
 }
-.background-container {
-    /* background-image: url('images/659cfc3ac1cad500c459bee1_Rectangle\ 29-p-800.webp');
-    background-size: cover;
-    background-position: center; */
-    /* Adjust height as needed */
-    height: 600px; /* Example height */
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    opacity: 0.7;
-} 
+ 
 .home-img{
-    max-width: 50%;
+    width: 100%;
     margin-top: 30px;
+    position: relative;
+    z-index: 5;
 }
 .welcome-section{
     padding: 10px;
-    margin-top: 100px;
+   
+    position: absolute;
+    right: 100px;
+    z-index: 50;
 }
 .welcome-section h1{
-    font-size: 4rem;
-    color: rgb(112, 6, 86);
+    font-size: 25px;
+    color: rgb(2, 2, 2);
+    z-index: 5;
 }
 .welcome-section p{
-    font-size: 2.5rem;
+    margin-top:10px;
+    font-size: 1.5rem;
     color: black;
+    z-index: 5;
 }
-.slideshow-container{
-    display: none;
+
+.welcome-section{
+    display:flex;
+    flex-direction: column;
+    position:absolute;
+    margin-top:200px;
+    z-index:7;
 }
+
+@media screen and (max-width: 565px) {
+    .welcome-section{
+        margin-top: 100px;
+        z-index: 7;
+    }
+    .welcome-section h1{
+        margin-top: 50px;
+        font-size: 24px;
+        color:rgb(11, 81, 100);
+    }
+}
+    
+
+@media screen and (max-width: 729px){
+    .welcome-section{
+        margin-top:40px;
+    }
+    .welcome-section h1{
+        font-size: 30px;
+    }
+    .welcome-section p{
+        font-size:16px;
+    }
+}
+@media screen and (min-width: 729px) and (max-width: 1023px) {
+    .welcome-section{
+        margin-top:50px;
+    }
+}
+
 .book-table{
+    margin-top:20px;
     padding: 10px;
     color: #fff;
     background-color:rgb(114, 107, 90);
     border: none;
     border-radius: 8px;
+}
+.book-table:hover{
+    background:linear-gradient(to right,rgb(160, 42, 211),rgb(66, 53, 207));
+    color:white;
 }
 .book-table a{
     text-decoration: none;
@@ -73,27 +112,26 @@ html{
     background-color: #fff;
     color: black;
 }
-.variant-menus{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin: 20px;
-}
+
+
 .breakfast-menu{
     width: 350px;
-    height: 400px;
+    height: 250px;
     background: url('images/659d037e341df562731c1756_9329453\ 1-p-500.webp');
     background-size: cover;
     background-position: center;
-    background-color: rgb(233, 211, 204);
+    background-color:  rgb(237, 234, 233);
     margin: 10px;
     border: none;
     border-radius: 8px;
     position: relative;
 }
 .breakfast-menu h3{
-    font-size: 2rem;
+    font-size: 30px;
+    margin-top:0;
+    margin-left:0px;
     font-style: italic;
-    color:darksalmon;
+    color:rgb(188, 82, 217);
 }
 .breakfast-menu button{
     bottom: 20px;
@@ -104,20 +142,22 @@ html{
 }
 .brunch-menu{
     width: 350px;
-    height: 400px;
+    height: 250px;
     background: url('images/659d037ed2df25c930580a55_wepik-export-20240101105434ocrJ\ 1-p-500.webp');
     background-size: cover;
     background-position: center;
-    background-color: rgb(233, 211, 204);
+    background-color:  rgb(237, 234, 233);
     margin: 10px;
     border: none;
     border-radius: 8px;
     position: relative;
 }
 .brunch-menu h3{
-    font-size: 2rem;
+    font-size: 30px;
+    margin-top:0;
+    margin-left:0px;
     font-style: italic;
-    color:darksalmon;
+    color:rgb(188, 82, 217);
 }
 .brunch-menu button{
     bottom: 20px;
@@ -128,20 +168,22 @@ html{
 }
 .lunch-menu{
     width: 350px;
-    height: 400px;
+    height: 250px;
     background: url('images/659d037e164722028f18bf38_wepik-export-20240101110259Dx5F\ 1-p-500.webp');
     background-size: cover;
     background-position: center;
-    background-color: rgb(233, 211, 204);
+    background-color: rgb(237, 234, 233);
     margin: 10px;
     border: none;
     border-radius: 8px;
     position: relative;
 }
 .lunch-menu h3{
-    font-size: 2rem;
+    font-size: 30px;
+    margin-top:0;
+    margin-left:0px;
     font-style: italic;
-    color:darksalmon;
+    color:rgb(188, 82, 217)
 }
 .lunch-menu button{
     bottom: 20px;
@@ -152,11 +194,11 @@ html{
 }
 .dinner-menu{
     width: 350px;
-    height: 400px;
+    height: 250px;
     background: url('images/659d037e86029a78b08fbddb_wepik-export-20240101111326XrsE\ 1-p-500.webp');
     background-size: cover;
     background-position: center;
-    background-color: rgb(233, 211, 204);
+    background-color:  rgb(237, 234, 233);
     margin: 10px;
     border: none;
     border-radius: 8px;
@@ -288,13 +330,20 @@ html{
     font-size: 1.2rem;
     text-align: center;
 }
-.our-services{
+.our-services {
     text-align: center;
-    color: #fff;
+    font-size: 16px;
+    background: linear-gradient(to right,#924cd8, #32d8d3 ); /* Example gradient from green to blue */
 }
 .our-services h3{
-    font-style: italic;
-    color: orangered;
+       color:peachpuff;
+       padding: 10px;
+}
+.our-services h2{
+    color:white;
+    text-decoration: none;
+    padding:10px;
+
 }
 .myform input{
     width: 40%;
@@ -432,6 +481,37 @@ html{
     width: auto;
 }
 
+.variant-menus {
+    display: flex;
+    justify-content: space-around;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+}
+
+.variant-menus::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in WebKit browsers */
+}
+
+.breakfast-menu,
+.brunch-menu,
+.lunch-menu {
+    flex: 0 0 auto; /* Prevent items from shrinking */
+    width: calc(100% - 20px); /* Adjust width to fit within container */
+    max-width: 250px; /* Set maximum width for each menu */
+    margin-right: 10px; /* Add some space between menus */
+}
+
+/* Optional: Add media query to adjust styles for smaller screens */
+@media (max-width: 768px) {
+    .variant-menus {
+        overflow-x: scroll; /* Enable horizontal scrolling for small screens */
+        scrollbar-width: auto; /* Show scrollbar for small screens */
+    }
+}
+
+
 .all-lists{
     position: relative;
     background-image: url('images/62b95f297713d8a178a62fef_img-min-1-1\ \(1\)\ \(1\)\ \(1\)\ \(1\)\ \(1\).jpg');
@@ -562,16 +642,11 @@ html{
     .products-container{
         grid-template-columns: repeat(2,1fr);
     }
-    .background-container{
-        flex-direction: column;
-        height: 1000px;
-    }
+  
     .home-img{
-        display: none;
+        display: block;
     }
-    .variant-menus{
-        grid-template-columns: repeat(2,1fr);
-    }
+   
     .reservation-div{
         width: 600px;
         height: 320px;
@@ -591,17 +666,25 @@ html{
     .welcome-more{
         flex-direction: column;
     }
-    .background-container{
-        height: 500px;
-    }
+    
     .welcome-section{
-        margin-top: 10px;
+        height:20px;
+    margin-top:20px;
+       right:10px;
+    }
+    .welcome-section h1{
+        display:flex;
+        font-size: 1.2rem;
+        width:100%;
+    }
+    .welcome-section p{
+        font-size: 0.945rem;
     }
     .home-img{
         margin-top: 10px;
-    }
-    .welcome-section h1{
         font-size: 2rem;
+       height:400px;
+        
     }
     .slideshow-container{
         display: block;
@@ -630,10 +713,7 @@ html{
     .welcome-more p{
         font-size: 1.2rem;
     }
-    .variant-menus{
-        grid-template-columns: repeat(1,1fr);
-        margin: 10px;
-    }
+   
     .reservation-div{
         width: 350px;
         height: 600px;
@@ -644,7 +724,7 @@ html{
     .breakfast-menu, .brunch-menu,.lunch-menu,.dinner-menu{
         width: 400px;
     }
-    
+
     .header-text{
         top:15%;
         left:45%;
@@ -693,4 +773,169 @@ html{
         display: block;
     }
 }
+
+
+
+
+.product_gallery {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+}
+
+.product {
+    margin-left: 5px;
+    min-width: 200px; /* Adjust the minimum width as needed */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin-right: 10px; /* Add some space between products */
+    transition: box-shadow 0.3s ease;
+    overflow-x: auto; /* Enable horizontal scrolling for individual products */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+}
+
+.product:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+    border-color: rgb(7, 7, 7);
+}
+
+.product_img img {
+    width: 100%;
+    height:200px;
+    object-fit: cover;
+}
+
+.product_name,
+.product_category,
+.product_price {
+    margin-bottom: 5px;
+}
+.product_price{
+    font-weight: 700;
+    font-size:15px;
+}
+
+.add_cart button {
+    display: block;
+    background-color: orange;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    width: 100%;
+    font-weight: lighter;
+    cursor: pointer;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: display 0.3s ease;
+}
+
+.product:hover .add_cart button {
+    background-color: orange;
+    color: white;
+    display: block;
+}
+
+.add_cart button:hover {
+    background:linear-gradient(to  rigth,rgb(94, 213, 152),rgb(97, 97, 225));
+    color: white
+}
+.add_cart a{
+        text-decoration:none;
+        color:white;
+    }
+/* Desktop CSS */
+@media only screen and (min-width: 768px) {
+    .product_gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-left: 100px; /* Reset margin-left for desktop */
+    }
+
+    .product {
+        width: calc(20% - 20px); /* Adjust width for desktop */
+        margin-right: 20px;
+        margin-top:20px; /* Add more margin-right for desktop */
+    }
+
+    .add_cart button {
+        display:block;/* Make add to cart button visible by default on desktop */
+        background-color: orange;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 14px;
+        width: 100%;
+        font-weight: lighter;
+        cursor: pointer;
+        border-radius: 5px;
+        text-transform: uppercase;
+        transition: display 0.3s ease;
+    }
+
+    .product:hover .add_cart button {
+        display: block /* Hide add to cart button on hover on desktop */
+    }
+    .add_cart a{
+        text-decoration:none;
+    }
+}
+
+
+.instagram{
+    display:flex;
+    justify-content: center;
+    background:linear-gradient(to right,blue,rgb(151, 74, 218));
+    
+}
+.instagram h1{
+    padding:4px;
+    color:white;
+    
+}
+
+.gallery-container {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.more-gallery {
+margin: 10px;
+}
+
+.image-container {
+position: relative;
+width: 200px; /* Adjust as needed */
+height: 200px; /* Adjust as needed */
+}
+
+.image-container img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.my-img {
+position: absolute;
+bottom: 10px; /* Adjust as needed */
+right: 10px; /* Adjust as needed */
+}
+
+.my-img a {
+color: white;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+.image-container {
+width: 150px; /* Adjust as needed */
+height: 150px; /* Adjust as needed */
+}
+}
+
 
