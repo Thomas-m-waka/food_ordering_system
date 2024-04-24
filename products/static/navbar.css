@@ -32,19 +32,32 @@ nav{
     text-decoration: none;
     color:#fff;
     font-size: 1.2rem;
-    border-bottom: 3px solid transparent;
-    transition: 0.5s;
+    transition: 0.35s ease;
 }
+.links a:hover{
+    color:yellow;
+    text-decoration:underline;
+    border-bottom:6px solid yellow;
+}
+.links li a.active {
+    color: yellow;
+    border-bottom: 6px solid yellow;
+     /* Set your desired color */
+    /* Add any other styling you want for the active link */
+}
+
 .links a:active{
-    border-bottom: 3px solid goldenrod;
-    width: 100%;
-    background-color: goldenrod;
+       width: 100%;
+    
     color: #fff;
     border-radius: 25px;
 }
 .links li:hover{
-    background-color: goldenrod;
+    color:yellow;
     border-radius: 25px;
+    text-decoration:underline;
+    
+    
 }
 .cart{
     border: transparent;
@@ -154,7 +167,7 @@ nav{
     transform: translate(-100%);
     transition: all 0.3s linear;
     background: #f1e5e5;
-    z-index: 2;
+    z-index: 20;
     align-items: center;
     overflow-y: scroll;
     scroll-behavior: smooth;
@@ -172,6 +185,19 @@ nav{
     list-style-type: none;
     padding: 15px;
 }
+
+/*nav count notificaation */
+.cart-count{
+    position:absolute;
+    color:yellow;
+    font-size:20px;
+    top:5px;
+    margin-left:10px;
+    padding:12px;
+    
+}
+
+
 .our-logo{
     margin-top: 40px;
     padding: 10px;
@@ -212,6 +238,12 @@ nav{
     .logo{
         width: 120px;
     }
+    .cart-count{
+        padding:5px;
+        margin-left:25px;
+        font-size:20px;
+        display:absolute;
+       }
     .cart{
         padding: 0;
     }
@@ -225,5 +257,7 @@ nav{
 @media screen and (max-width:550px) {
     .sidebar{
         width: 100%;
+        z-index: 56
     }
+
 }
