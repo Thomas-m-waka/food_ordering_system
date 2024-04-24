@@ -1,39 +1,74 @@
-{% extends 'authenticate/home.html' %}
+{% extends 'main/utilities-search-product.html' %}
 {%load static%}
-    {%block content%}
-            {% if searched %}
+{%block content%}
+            <style>
+                .div-container  button{
+                    margin-top:10px;
+                    margin-left:20px;
+                    padding: 6px;
+                    border-radius:2px;
+
+                }
+            </style>
                 <div class="div-container">
                     <h1>Search Results</h1>
-                    <a href="{% url 'index'%}" style="text-decoration:none;">
-                        <i class="fa-solid fa-chevron-left"></i>
-                        Back
-                    </a>
+                 <button> <a href="{% url 'index'%}" style="text-decoration:none;">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    Back home
+                </a></button>
                 </div>
-                <br>
-                <div class="search-container">
-                    {%for product in products%}
-                    <div class="search-items">
-                        <img src={{product.product_image.url}} class="search-img">
-                        <div class="products">
-                            <h2>Name: {{product.product_name}}</h2>
-                            <h3>Category: {{product.category}}</h3>
-                            <h3>Price: Kshs {{product.product_price}}</h3>
-                            <p>{{product.description}}</p>
+               
+
+                <style>
+                    .searched_product{
+                        display:flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .searched_product p{
+                        font-size:18px;
+                    }
+                </style>
+                {% if searched %}
+                <div class="searched_product">
+                    {% if message %}
+                    <p>{{ message }}</p>
+                </div>
+                 
+                {% else %}
+
+                <div class="product_gallery_container">
+                    <div class="product_gallery">
+                        {%for product in products%}
+                        <div class="product">
+                            <div class="product_img">
+                                <img src={{product.product_image.url}}>
+                            </div>
+                            <div class="product_name">
+                                Name: {{product.product_name}}
+                            </div>
+                            <div class="product_category">
+                                {{product.description}}
+                            </div>
+                            <div class="product_price">
+                                Price: Kshs {{product.product_price}}
+                            </div>
                             {%if user.is_authenticated%}
-                                <button class="add-cart-btn">
-                                    <a href="{%url 'add-to-cart' product.id %}">Add To Cart</a>
-                                </button>
-                            {%else%}
-                                <button class="add-cart-btn">
-                                    <a href="{%url 'login'%}">Add To Cart</a>
-                                </button>
-                            {%endif%}
+                            <div class="add_cart">
+                                <button><a href="{%url 'add-to-cart' product.id %}">Add To Cart</a></button>
+                            </div>
+                            {% else %}
+                            <div class="add_cart">
+                                <button><a href="{%url 'login' %}">Add To Cart</a></button>
+                            </div>
+                            {% endif%}
+                
                         </div>
+                        {% endfor %}
                     </div>
-                    {%endfor%}
-                </div>
+                </div>   
+                {%endif%}
             {%else%}
                 <h1>Search a product from our menu...</h1>
             {%endif%}
     {%endblock%}
-
