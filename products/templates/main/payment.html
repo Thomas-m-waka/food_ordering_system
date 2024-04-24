@@ -1,19 +1,81 @@
 {%extends 'authenticate/home.html'%}
 {%load static%}
 {%block content%}
+<br><br>
+<style>
+    .payment_container_wrap {
+      
+    display: flex;
+    margin:0 auto;
+    max-width: 350px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add box shadow */
+     padding:20px;/* Add padding to the container */
+}
+
+.payment_container {
+    text-align: center;
+   
+}
+
+.mpesa {
+    width: 100px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.pay_amount,
+.phone_number {
+    margin-bottom: 10px; /* Add margin between elements */
+}
+
+.pay_button {
+    background-color: #007bff; /* Set button background color */
+    border: none; /* Remove button border */
+    padding: 10px 20px; /* Add padding to the button */
+    border-radius: 5px; /* Add border radius to the button */
+}
+.pay_button:hover{
+    background: linear-gradient(to right rgb(12, 223, 12),rgb(100, 203, 182));
+    color:black;
+}
+
+.pay_button a {
+    color: #fff; /* Set button text color */
+    text-decoration: none; /* Remove underline from the link */
+}
+.pay{
+    border:1px solid green;
+}
+.pay_amount span{
+    font-weight:700;
+}
+.phone_number span{
+    font-weight: 600;
+}
+.phone_number{
+    padding:6px;
+}
+</style>
     <button class="back-btn">
         <a href="{% url 'index'%}"><i class="fa-solid fa-chevron-left "></i>
             BACK HOME
         </a>  
     </button>
-<center>
-    <div class="my-payment">
+
+    <div class="payment_container_wrap">
+    <div class="payment_container">
+        <h2>Pay</h2>
         <img src="{%static 'images\download.png' %}" class="mpesa">
-        <h2><u>Pay</u></h2>
-        <p>Amount: Kshs {{payment.amount}}</p>
-        <p>Phone Number: {{payment.mobile}}</p>
-        <button class="pay-btn">
+        <hr class="pay">
+        <div class="pay_amount">
+           <span>Amount </span> : Kshs {{payment.amount}}</div>
+        <div   class="phone_number">
+            <span>phone_number</span> : {{payment.mobile}}
+        </div>
+        <button class="pay_button">
             <a href="{% url 'payments'%}">Initiate Payment</a>
         </button>
-</center>
+    </div>
+</div>
 {%endblock%}
