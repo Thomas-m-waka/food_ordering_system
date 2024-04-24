@@ -2,23 +2,242 @@
 {%load static%}
 
 {%block content%}
-<br>
-    <img src="{% static 'images/White_Deox_Logo@4x.png'%}" class="logo">
+
+<style>
+    .container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:20px;
+}
+
+.container {
+    text-align: center; 
+    box-shadow: 0 0 10px rgba(3, 3, 3, 0.1); 
+    
+}
+.container h2{
+   
+    margin-bottom:0;
+}
+
+.myform {
+    width: 400px;
+    padding: 40px;
+    margin-bottom:0;
+}
+
+.submit_button {
+    width: 400px;
+    border-radius: 20px;
+    padding: 0;
+    margin-top: 0;
+    cursor: pointer;
+    margin-bottom:0;
+}
+
+.form_class {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start; 
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid gray;
+    transition: box-shadow 0.3s ease; 
+    position: relative; 
+}
+
+.form_class input[type='text'],
+.form_class input[type='password'],
+.form_class input[type='email'] {
+    width: calc(100% - 20px); 
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    transition: border-color 0.3s ease;
+}
+
+.form_class input[type='text']:focus,
+.form_class input[type='password']:focus,
+.form_class input[type='email']:focus {
+    font-size: 18px; 
+    outline: none; 
+}
+
+.form_class:focus-within {
+    border: 2.5px solid rgb(45, 102, 235);
+    box-shadow: 0 0 10px rgba(45, 102, 235, 0.5);
+}
+
+.form_class label {
+    position: absolute;
+    left: 10px; 
+    top: 40%; 
+    transform: translateY(-0%); 
+    transition: top 0.3s ease, font-size 0.3s ease; 
+    font-size: 18px;
+    margin-bottom: 4px; 
+}
+
+.form_class input[type='text']:focus + label,
+.form_class input[type='text']:valid + label,
+.form_class input[type='password']:focus + label,
+.form_class input[type='password']:valid + label,
+.form_class input[type='email']:focus + label,
+.form_class input[type='email']:valid + label {
+    top: 0; 
+    font-size: 20px; 
+}
+
+button {
+    background-color: rgb(4, 4, 193);
+    color: #fff;
+    border: none;
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+.submit_button button:hover {
+    background-color: rgb(17, 149, 231);
+}
+
+.account a {
+    font-size: 20px;
+    margin-left: 6px;
+    text-decoration: none;
+    padding: 2px;
+    cursor: pointer;
+    color: blue;
+    transition: box-shadow 0.3s ease; 
+}
+
+.account a:hover {
+    background-color: white;
+    padding: 5px;
+    border-radius: 4px;
+    color: blue;
+    box-shadow: 0 0 10px rgba(45, 102, 235, 0.5);
+}
+
+.account {
+    display: flex;
+    margin-left: 10px;
+    margin-top:0;
+}
+
+
+
+
+.error{
+    color:red;
+    list-style: none;
+}
+.mess li{
+    color:red;
+    list-style: none;
+    font-size:18px;
+}
+
+.accounte{
+    display: flex;
+    margin-left: 10px;
+    margin-top:0;
+    margin-bottom:0;
+
+}
+.accounte a{
+    text-decoration:none;
+    font-size:18px;
+    margin-bottom:0;
+    font-weight:600;
+    transition:0.3 ease;
+}
+.accounte a:hover{
+    background-color: rgb(109, 109, 238);
+    color:white;
+    padding:2px;
+    border-radius:2px;
+
+}
+.dd{
+    top:0;
+   background-color:#9b8356;
+}
+
+.dd .logo{
+    background-color:#9b8356;}
+/* mobile view */
+@media only screen and (max-width: 600px) {
+    .container {
+        padding: 10px;
+        width: 100%; 
+    }
+
+    .myform {
+        width: 90%; 
+        padding: 20px; 
+    }
+
+    .submit_button {
+        width: 100%; 
+    }
+
+    .form_class {
+        padding: 8px; 
+    }
+
+    .form_class label {
+        font-size: 16px; 
+    }
+
+    .form_class input[type='text'],
+    .form_class input[type='password'],
+    .form_class input[type='email'] {
+        font-size: 16px; 
+    }
+
+    button {
+        font-size: 14px; 
+    }
+}
+</style>
+
+<div class="dd">
+    <img src="{% static 'images/White_Deox_Logo@4x.png'%}"  class="logo">
+   </div>
     <button class="back-btn">
         <a href="{% url 'index'%}"><i class="fa-solid fa-chevron-left "></i>
             BACK HOME
         </a>  
     </button>
-<center>
-    <div class="verification">
-        <!--update password form-->
+
+
+<div class="container-wrapper">
+    <div class="container">
         <h2>Enter Username</h2>
-        <form action="{% url 'get-phone'%}" method="POST" class="myform">
-            {%csrf_token%}
-            <label for="username">Enter your username:</label><br>
-            <input type="text" id="username" name="username"><br><br>
-            <button type="submit" class="my-button">Next</button>
-        </form>
-    </div>
-</center>
+    
+        {% if messages %}
+        <ul class="mess">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="{% url 'get-phone'%}" method="POST" class="myform">
+            {% csrf_token %}
+            <div class="form_class">
+                <input type="text" id="username" name="username">
+                <label for="Username">Username</label>
+            </div>
+             <div class="submit_button">
+                <button type="submit">Next</button>
+            </div>
+    </form>
+        </div>
+</div>
 {%endblock%}
