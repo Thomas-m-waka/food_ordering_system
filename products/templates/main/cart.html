@@ -1,9 +1,11 @@
 {% extends 'authenticate/home.html' %}
-{%load static%}
+
 
 {%block content%}
 {%include 'main/navbar.html'%}
+
 <br><br><br><br>
+
     <div class="cart-header">
         <h2>Your Cart</h2>
     </div>
@@ -48,5 +50,6 @@
                     <a href="{% url 'order-from-cart'%}">Order</a>
                 </button>
         </div>
+</div>
     {%endif%}
 {%endblock%}
