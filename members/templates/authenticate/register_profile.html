@@ -3,18 +3,35 @@
 
 {%block content%}
 <br>
-    <img src="{% static 'images/White_Deox_Logo@4x.png'%}" class="logo">
+<div class="dd">
+    <img src="{% static 'images/White_Deox_Logo@4x.png'%}"  class="logo">
+   </div>
     <button class="back-btn">
         <a href="{% url 'index'%}"><i class="fa-solid fa-chevron-left "></i>
             BACK HOME
         </a>  
     </button>
-<center>
-    <h1>Register Profile Details</h1>
-    <form action="" method="POST" enctype="multipart/form-data" class="myform">
-        {%csrf_token%}
-        {{form.as_div}}
-        <input type="submit" value="REGISTER" class="my-submit">
-    </form>
-</center>
+    <style>
+        .myform input[type='text'],
+        .myform input[type='number'],
+        .myform input[type='tel'],
+        .myform input[type='file']{
+            width:90%;
+        }
+    </style>
+
+<div class="container-wrapper">
+    <div class="container">
+        <h2>Register profile Details</h2>
+        <form method="POST" class="myform" enctype="multipart/form-data">
+            {% csrf_token %}                            
+            {{form.as_div}}
+            <div class="submit_button">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+        
+    </div>
+</div>
+    
 {%endblock%}
