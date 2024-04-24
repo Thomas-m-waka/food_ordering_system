@@ -1,19 +1,14 @@
-.menu-header{
-    background: url('images/659d2ff6d4836a19ed9210f7_Rectangle\ 63.webp');
-    background-size: cover;
-    background-position: center;
-    height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;   
+.manu{
+    height:60px;
+    margin-top:40px;
+
 }
 .menu-headers{
     background: url('images/659d2ff6d4836a19ed9210f7_Rectangle\ 63.webp');
     background-size: cover;
     background-position: center;
-    height: 150px;
+    margin-top:20px;
+    height:80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -209,7 +204,10 @@
     position: relative;
 }
 @media screen and (max-width:992px) {
-    .menu-header, .menu-headers{
+    .manu{
+        height:20px;
+    }
+    .menu-headers{
         width: 100%;
         height: 200px;
     }
@@ -230,7 +228,10 @@
     }
 }
 @media screen and (max-width:550px) {
-    .menu-header,.menu-headers{
+    .manu{
+        height:20px;
+    }
+    .menu-headers{
         width: 100%;
         height: 150px;   
     }
@@ -288,4 +289,171 @@
     .image7{
         max-width: 95%;
     }
+}
+
+
+.product_gallery {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+}
+
+.product {
+    margin-left: 5px;
+    min-width: 200px; /* Adjust the minimum width as needed */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin-right: 10px; /* Add some space between products */
+    transition: box-shadow 0.3s ease;
+    overflow-x: auto; /* Enable horizontal scrolling for individual products */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+}
+
+.product:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+    border-color: rgb(7, 7, 7);
+}
+
+.product_img img {
+    width: 100%;
+    height:200px;
+    object-fit: cover;
+}
+
+.product_name,
+.product_category,
+.product_price {
+    margin-bottom: 5px;
+}
+.product_price{
+    font-weight: 700;
+    font-size:15px;
+}
+
+.add_cart button {
+    display: flex;
+    background-color: orange;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    width: 100%;
+    font-weight: lighter;
+    cursor: pointer;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: display 0.3s ease;
+}
+
+.product:hover .add_cart button {
+    background-color: orange;
+    color: white;
+    display: block;
+}
+
+.add_cart button:hover {
+    background-color: rgb(223, 152, 20);
+    color: white
+}
+.add_cart a{
+        text-decoration:none;
+        color:white;
+    }
+    .add_cart button:hover{
+        background:linear-gradient(to right, rgb(72, 154, 235),rgb(18, 207, 188));
+
+    }
+/* Desktop CSS */
+@media only screen and (min-width: 768px) {
+    .product_gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-left: 100px; /* Reset margin-left for desktop */
+    }
+
+    .product {
+        width: calc(20% - 20px); /* Adjust width for desktop */
+        margin-right: 20px;
+        margin-top:20px; /* Add more margin-right for desktop */
+    }
+
+    .add_cart button {
+        display:flex; /* Make add to cart button visible by default on desktop */
+        background-color: orange;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 14px;
+        width: 100%;
+        font-weight: lighter;
+        cursor: pointer;
+        border-radius: 5px;
+        text-transform: uppercase;
+        transition: display 0.3s ease;
+    }
+
+    .product:hover .add_cart button {
+        display: block /* Hide add to cart button on hover on desktop */
+    }
+    .add_cart a{
+        text-decoration:none;
+    }
+}
+
+
+
+.instagram{
+    display:flex;
+    justify-content: center;
+    background:linear-gradient(to right,blue,rgb(151, 74, 218));
+    
+}
+.instagram h1{
+    padding:4px;
+    color:white;
+    
+}
+
+.gallery-container {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.more-gallery {
+margin: 10px;
+}
+
+.image-container {
+position: relative;
+width: 200px; /* Adjust as needed */
+height: 200px; /* Adjust as needed */
+}
+
+.image-container img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.my-img {
+position: absolute;
+bottom: 10px; /* Adjust as needed */
+right: 10px; /* Adjust as needed */
+}
+
+.my-img a {
+color: white;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+.image-container {
+width: 150px; /* Adjust as needed */
+height: 150px; /* Adjust as needed */
+}
 }
