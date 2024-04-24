@@ -1,175 +1,163 @@
 {%extends 'main/utilities_menu.html'%}
 {%load static%}
-
 {%block content%}
-<div class="menu-header">
-    <h2>Restaurant Menu</h2>
-</div>
-<div class="special">
-    <h1>Restaurant TNC Special Offers</h1>
-    <div class="special-container">
-        <div class="indiv-special">
-            <img src="{%static 'images/659e41c736cc0d2009c1ac99_image-3-p-500.png'%}" class="special-img" alt="Our Specials">
-            <div class="desc">
-                <h4>Green Spaghetti with spinach</h4>
-                <p>Aplate of food with a bowl of vegetables and a bowl of broccoli.</p>
-                <span class="price">
-                    <h3 class="cancelled">Kshs: 1800</h3>
-                    <h3 class="c-price">Kshs: 1000</h3>
-                </span>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
-        <div class="indiv-special">
-            <img src="{%static 'images/659e41941b1b06aa2790a1fe_image-2-p-500.png'%}" class="special-img" alt="Our Specials">
-            <div class="desc">
-                <h4>Fresh vegetable salad surrounded</h4>
-                <p>A glass bowl of fresh vegetable salad surrounded by the ingredients.</p>
-                <span class="price">
-                    <h3 class="cancelled">Kshs: 2500</h3>
-                    <h3 class="c-price">Kshs: 1500</h3>
-                </span>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
-        <div class="indiv-special">
-            <img src="{%static 'images/659e41a494b1373cf9b327b6_image-1-p-500.png'%}" class="special-img" alt="Our Specials">
-            <div class="desc">
-                <h4>Tasty food with delicious burger</h4>
-                <p>A Culinary Journey of Irresistible Flavor Combinations, Handcrafted Perfection.</p>
-                <span class="price">
-                    <h3 class="cancelled">Kshs: 1000</h3>
-                    <h3 class="c-price">Kshs: 500</h3>
-                </span>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
-        <div class="indiv-special">
-            <img src="{%static 'images/659e4186504fb8add58fe148_image-p-500.png'%}" class="special-img" alt="Our Specials">
-            <div class="desc">
-                <h4>Vegetables & a bowl of broccoli</h4>
-                <p>Aplate of food with a bowl of vegetables and a bowl of broccoli.</p>
-                <span class="price">
-                    <h3 class="cancelled">Kshs: 1500</h3>
-                    <h3 class="c-price">Kshs: 800</h3>
-                </span>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="manu"></div>
 <div class="menu-headers">
     <h2>Breakfast Menu</h2>
 </div>
-<div class="breakfast-container">
-    {%for product in break_products%}
-    <div class="breakfast-item">
-        <img src={{product.product_image.url}} class="breakfast-img">
-        <div class="break-desc">
-            <h2>Name: {{product.product_name}}</h2>
-            <h3 class="c-price">Kshs:{{product.product_price}}</h3>
-            <p>{{product.description}}</p>
-                {%if user.is_authenticated%}
-                    <button class="add-to-cart">
-                        <a href="{%url 'add-to-cart' product.id %}">Add To Cart</a>
-                    </button>
-                {%else%}
-                    <button class="add-to-cart">
-                        <a href="{%url 'login'%}">Add To Cart</a>
-                    </button>
-                {%endif%}
-        </div>
-    </div>
-        {%endfor%}
-</div>
+
+
+        <div class="product_gallery_container">
+            <div class="product_gallery">
+                {%for product in break_products%}
+                <div class="product">
+                    <div class="product_img">
+                        <img src={{product.product_image.url}}>
+                    </div>
+                    <div class="product_name">
+                        Name: {{product.product_name}}
+                    </div>
+                    <div class="product_category">
+                        {{product.description}}
+                    </div>
+                    <div class="product_price">
+                        Price: Kshs {{product.product_price}}
+                    </div>
+                    {%if user.is_authenticated%}
+                    <div class="add_cart">
+                        <button><a href="{%url 'add-to-cart' product.id %}">Add To Cart</a></button>
+                    </div>
+                    {% else %}
+                    <div class="add_cart">
+                        <button><a href="{%url 'login' %}">Add To Cart</a></button>
+                    </div>
+                    {% endif%}
+        
+                </div>
+                {% endfor %}
+            </div>
+        </div>   
+
+
+
+
 <div class="menu-headers">
     <h2>Lunch Menu</h2>
 </div>
-<div class="lunch-container">
-    {%for product in lunch_products%}
-    <div class="lunch-item">
-        <img src={{product.product_image.url}} class="lunch-img">
-        <div class="lunch-desc">
-            <h2>Name: {{product.product_name}}</h2>
-            <h3 class="c-price">Kshs:{{product.product_price}}</h3>
-            <p>{{product.description}}</p>
+    <div class="product_gallery_container">
+        <div class="product_gallery">
+            {%for product in lunch_products%}
+            <div class="product">
+                <div class="product_img">
+                    <img src={{product.product_image.url}}>
+                </div>
+                <div class="product_name">
+                    Name: {{product.product_name}}
+                </div>
+                <div class="product_category">
+                    {{product.description}}
+                </div>
+                <div class="product_price">
+                    Price: Kshs {{product.product_price}}
+                </div>
                 {%if user.is_authenticated%}
-                    <button class="add-to-cart">
-                        <a href="{%url 'add-to-cart' product.id %}">Add To Cart</a>
-                    </button>
-                {%else%}
-                    <button class="add-to-cart">
-                        <a href="{%url 'login'%}">Add To Cart</a>
-                    </button>
-                {%endif%}
+                <div class="add_cart">
+                    <button><a href="{%url 'add-to-cart' product.id %}">Add To Cart</a></button>
+                </div>
+                {% else %}
+                <div class="add_cart">
+                    <button><a href="{%url 'login' %}">Add To Cart</a></button>
+                </div>
+                {% endif%}
+             </div>
+            {% endfor %}
         </div>
-    </div>
-        {%endfor%}
-</div>
+    </div>  
 <div class="menu-headers">
     <h2>Dinner Menu</h2>
 </div>
-<div class="dinner-container">
-    {%for product in dinner_products%}
-    <div class="dinner-item">
-        <img src={{product.product_image.url}} class="dinner-img">
-        <div class="dinner-desc">
-            <h2>Name: {{product.product_name}}</h2>
-            <h3 class="c-price">Kshs:{{product.product_price}}</h3>
-            <p>{{product.description}}</p>
+    <div class="product_gallery_container">
+        <div class="product_gallery">
+            {%for product in dinner_products%}
+            <div class="product">
+                <div class="product_img">
+                    <img src={{product.product_image.url}}>
+                </div>
+                <div class="product_name">
+                    Name: {{product.product_name}}
+                </div>
+                <div class="product_category">
+                    {{product.description}}
+                </div>
+                <div class="product_price">
+                    Price: Kshs {{product.product_price}}
+                </div>
                 {%if user.is_authenticated%}
-                    <button class="add-to-cart">
-                        <a href="{%url 'add-to-cart' product.id %}">Add To Cart</a>
-                    </button>
-                {%else%}
-                    <button class="add-to-cart">
-                        <a href="{%url 'login'%}">Add To Cart</a>
-                    </button>
-                {%endif%}
+                <div class="add_cart">
+                    <button><a href="{%url 'add-to-cart' product.id %}">Add To Cart</a></button>
+                </div>
+                {% else %}
+                <div class="add_cart">
+                    <button><a href="{%url 'login' %}">Add To Cart</a></button>
+                </div>
+                {% endif%}
+    
+            </div>
+            {% endfor %}
         </div>
-    </div>
-        {%endfor%}
-</div>
-    <br>
-<center>
+    </div>  
+
+
+<div class="instagram">
     <h1>Instagram Gallery</h1>
-</center>
-<br>    
+</div>
 <div class="gallery-container">
     <div class="more-gallery">
-        <img src="{%static 'images/659bce1e62cac1b1a506a857_Rectangle 19.webp'%}" class="image2">
-        <div class="my-img">
-            <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+        <div class="image-container">
+            <img src="{% static 'images/659bce1e62cac1b1a506a857_Rectangle 19.webp' %}" class="image2">
+            <div class="my-img">
+                <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+            </div>
         </div>
     </div>
     <div class="more-gallery">
-        <img src="{%static 'images/659bce1e4deb5ad4e1eb117e_wepik-export-20240101084202rP9g 1.webp'%}" class="image3">
-        <div class="my-img">
-            <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+        <div class="image-container">
+            <img src="{% static 'images/659bce1e4deb5ad4e1eb117e_wepik-export-20240101084202rP9g 1.webp' %}" class="image3">
+            <div class="my-img">
+                <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+            </div>
         </div>
     </div>
     <div class="more-gallery">
-        <img src="{%static 'images/659bce1dd1071c21f7950b12_Rectangle 22.webp'%}" class="image4">
-        <div class="my-img">
-            <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+        <div class="image-container">
+            <img src="{% static 'images/659bce1dd1071c21f7950b12_Rectangle 22.webp' %}" class="image4">
+            <div class="my-img">
+                <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+            </div>
         </div>
     </div>
     <div class="more-gallery">
-        <img src="{%static 'images/659bce1fb53dc2c26218efb3_Rectangle 21.webp'%}" class="image5">
-        <div class="my-img">
-            <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+        <div class="image-container">
+            <img src="{% static 'images/659bce1fb53dc2c26218efb3_Rectangle 21.webp' %}" class="image5">
+            <div class="my-img">
+                <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+            </div>
         </div>
     </div>
     <div class="more-gallery">
-        <img src="{%static 'images/659bce1eb02bb26c005fc6cc_Rectangle 23.webp'%}" class="image6">
-        <div class="my-img">
-            <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+        <div class="image-container">
+            <img src="{% static 'images/659bce1eb02bb26c005fc6cc_Rectangle 23.webp' %}" class="image6">
+            <div class="my-img">
+                <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+            </div>
         </div>
     </div>
     <div class="more-gallery">
-        <img src="{%static 'images/659bb29c133d5685daf6a0ce_Rectangle 35.png'%}" class="image7">
-        <div class="my-img">
-            <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+        <div class="image-container">
+            <img src="{% static 'images/659bb29c133d5685daf6a0ce_Rectangle 35.png' %}" class="image7">
+            <div class="my-img">
+                <a href="https://www.instagram.com"><i class="fab fa-instagram fa-4x"></i></a>
+            </div>
         </div>
     </div>
 </div>
