@@ -8,11 +8,22 @@ class ServicesForm(ModelForm):
         model = Services
         fields = ("service_image","service_name","description")
 
-class ProductsForm(ModelForm):
+class ProductsForm(forms.ModelForm):
     class Meta:
         model = Products
-        fields = ("product_name","category","product_price","product_image","description")
+        fields = ("product_name", "category", "product_price", "product_image", "description")
 
+    CATEGORY_CHOICES = [
+        ('Lunch', 'Lunch'),
+        ('Breakfast', 'Breakfast'),
+        ('Dinner', 'Dinner'),
+    ]
+
+    category = forms.ChoiceField(
+        choices=CATEGORY_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-control'}),
+    )
+    
 class ReviewsForm(ModelForm):
     class Meta:
         model = Reviews
@@ -23,11 +34,27 @@ class CartForm(ModelForm):
         model = Cart
         fields = ("quantity",)
 
-class OrdersForm(ModelForm):
+from django import forms
+from .models import All_Orders
+from members.models import Profile
+
+
+from django.core.validators import RegexValidator
+
+
+
+class OrdersForm(forms.ModelForm):
+    mobile = forms.CharField(max_length=10, validators=[RegexValidator(r'^0\d{9}$', message="Mobile number must start with 0 and have 10 digits.")])
+
     class Meta:
         model = All_Orders
-        mobile = PhoneNumberField()
-        fields = ("shipping_details","mobile")
+        fields = ("shipping_details","mobile") 
+        
+
+ 
+
+
+
 
 class PaymentsForm(ModelForm):
     class Meta:
