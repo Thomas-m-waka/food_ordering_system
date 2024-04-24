@@ -4,27 +4,140 @@
 {%block content%}
 {%include 'main/navbar.html'%}
 <br><br><br><br><br>
-    <center>
-        <h1>Place Order</h1>
-        <form method="post" class='fom'>
-            {% csrf_token %}
-            
-                {%for item in cart%}
-                <div class="order-item2">
-                    <img src={{item.product.product_image.url}} class="order-img">
-                    <div class="details">
-                        <p>Product Name: {{item.product.product_name}}</p>
-                        <p>Price: {{item.price}}</p>
-                        <p>Quantity: {{item.quantity}}</p>
+
+
+<style>
+    /* Container Styles */
+.place_order_container {
+    max-width: 600px;
+    border:1px solid rgb(20, 20, 21);
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(8, 8, 8, 0.1);
+    border-radius:2%;
+}
+
+/* Heading Styles */
+.place_order_container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Form Styles */
+.fomh {
+    margin-bottom: 20px;
+}
+
+/* Order Item Styles */
+.order-item2 {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.order-img {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.details {
+    flex: 1;
+}
+
+/* Subtotals Styles */
+.subtotals, .shipping_fee {
+    margin-bottom: 10px;
+}
+
+/* Form Submit Button Styles */
+.place_order {
+    margin-top:6px;
+    
+}
+.place_order input[type="submit"]{
+    border-radius:4px;
+    width:100%;
+    padding:8px;
+    font-size:16px;
+    background-color: #007bff;
+    color:white;
+    transition:0.3 ease;
+}
+
+.place_order input:hover {
+    background-color: #8b75e3;
+    color:white;
+}
+.place_order_container h1{
+    display:flex;
+    justify-content: center;
+
+}
+.sep{
+    border:1px  solid rgb(33, 34, 34);
+}
+.subtotals span{
+    font-weight: 600;
+    font-size:18px;
+}
+.form_phonenumber input{
+    border-radius:2px;
+    font-size:18px;
+}
+.form_phonenumber input:focus-within{
+    border: 2px solid blueviolet;
+}
+.form_phonenumber label{
+    color:rgb(31, 31, 31);
+}
+.total_amout span{
+    font-weight:700;
+    font-size:18px;
+}
+</style>
+   <br><br><br>
+        <div class="place_order_container">
+            <h1>Place Order</h1>
+            <hr class="sep">
+            <form method="post" class='fomh'>
+                {% csrf_token %}
+                 {%for item in cart%}
+                    <div class="order-item2">
+                        <img src={{item.product.product_image.url}} class="order-img">
+                        <div class="details">
+                           <div class="name">
+                            Product Name: {{item.product.product_name}}
+                           </div>
+                            <div class="price">
+                                Price: {{item.price}}
+                            </div>
+                           <div class="quantity">
+                            Quantity: {{item.quantity}}
+                           </div>
+                        </div>
+                        
                     </div>
+                    <hr class="sep">
+                    {%endfor%}
+                    
+                <div class="subtotals">
+                    <span>Sub-total </span>: Kshs {{total_cost}}
                 </div>
-                {%endfor%}
-                
-            <p>Sub-total : Kshs <u>{{total_cost}}</u></p>
-            <p>Shipping fee : Ksh <u> {{shipping_fee}}</u> </p>
             
-            {{form.as_p}}
-            <input type="submit" value="Place Order" class="fomsubmit">
-        </form>
-    </center>
+                <div class="shipping_fee">
+                    Shipping fee : Ksh {{shipping_fee}} 
+                </div>
+                <hr>
+                <div class="total_amout">
+                <span>Total Amount</span> :Ksh {{total_amount_to_pay}}
+                </div>
+                <div class="form_phonenumber">
+                    {{form.as_p}}
+                </div>
+               <div class="place_order">
+                <input type="submit" value="Place Order">
+               </div>
+            </form>
+        </div>
+    
 {%endblock%}
