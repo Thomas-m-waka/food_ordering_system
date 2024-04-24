@@ -2,21 +2,36 @@
 {%load static%}
 
 {%block content%}
+
 <div class="cart-items">
-    {%for order in order_item %}
-        <div class="items-cont">
+    <div class="items-cont">
+            {%for order in order_item %}
             <img src={{order.product.product_image.url}} class="item-img">
             <div class="items">
                 <div class="product-info">
-                    <p>Product Name: {{order.product.product_name}}</p>
-                    <p>Price: Kshs: {{order.price}}</p>
-                    <p>Quantity: {{order.quantity}}</p>
-                    <p>Total: Kshs: {{order.total}}</p>
+                    <div class="product-name">
+                        Product Name: {{order.product.product_name}}
+                    </div>
+                    <div class="price">
+                        Price: Kshs: {{order.price}}
+                    </div>
+                    <div class="quantity">
+                        Quantity: {{order.quantity}}
+                    </div>
+                  <div clas="price_total">   
+                    Total: Kshs: {{order.total}}
+                  </div>
                 </div>
                 <div class="product-info">
-                    <p>Destination Details: {{order.order.shipping_details}}</p>
-                    <p>Shipping Details: {{order.shipping_status}}</p>
-                    <p>Payment Status: {{order.payment_status}}</p>
+                    <div class="destination">
+                        Destination Details: {{order.order.shipping_details}}
+                    </div>
+                    <div class="shipping_status">
+                        Shipping Details: {{order.shipping_status}}
+                    </div>
+                   <div class="payment_status">
+                    Payment Status: {{order.payment_status}}
+                   </div>
                     <button class="update-btn">
                         <a href="{%url 'update-delivered' order.id %}">Mark as Collected</a>
                     </button>
