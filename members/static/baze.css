@@ -1,112 +1,261 @@
-html{
-    background-color: #f1e5e5;
-    color: black;
-} 
-#header{
-    color: black;
-    text-align: center;
+.container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:20px;
 }
+
+.container {
+    text-align: center; 
+    box-shadow: 0 0 10px rgba(3, 3, 3, 0.1); 
+    
+}
+.container h2{
+   
+    margin-bottom:0;
+}
+
+.myform {
+    width: 400px;
+    padding: 40px;
+    margin-bottom:0;
+}
+
+.submit_button {
+    width: 400px;
+    border-radius: 20px;
+    padding: 0;
+    margin-top: 0;
+    cursor: pointer;
+    margin-bottom:0;
+}
+
+.form_class {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start; 
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid gray;
+    transition: box-shadow 0.3s ease; 
+    position: relative; 
+}
+
+.form_class input[type='text'],
+.form_class input[type='password'],
+.form_class input[type='email'] {
+    width: calc(100% - 20px); 
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    transition: border-color 0.3s ease;
+}
+
+.form_class input[type='text']:focus,
+.form_class input[type='password']:focus,
+.form_class input[type='email']:focus {
+    font-size: 18px; 
+    outline: none; 
+}
+
+.form_class:focus-within {
+    border: 2.5px solid rgb(45, 102, 235);
+    box-shadow: 0 0 10px rgba(45, 102, 235, 0.5);
+}
+
+.form_class label {
+    position: absolute;
+    left: 10px; 
+    top: 40%; 
+    transform: translateY(-0%); 
+    transition: top 0.3s ease, font-size 0.3s ease; 
+    font-size: 18px;
+    margin-bottom: 4px; 
+}
+
+.form_class input[type='text']:focus + label,
+.form_class input[type='text']:valid + label,
+.form_class input[type='password']:focus + label,
+.form_class input[type='password']:valid + label,
+.form_class input[type='email']:focus + label,
+.form_class input[type='email']:valid + label {
+    top: 0; 
+    font-size: 20px; 
+}
+
+button {
+    background-color: rgb(4, 4, 193);
+    color: #fff;
+    border: none;
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+.submit_button button:hover {
+    background-color: rgb(17, 149, 231);
+}
+
+.account a {
+    font-size: 20px;
+    margin-left: 6px;
+    text-decoration: none;
+    padding: 2px;
+    cursor: pointer;
+    color: blue;
+    transition: box-shadow 0.3s ease; 
+}
+
+.account a:hover {
+    background-color: white;
+    padding: 5px;
+    border-radius: 4px;
+    color: blue;
+    box-shadow: 0 0 10px rgba(45, 102, 235, 0.5);
+}
+
+.account {
+    display: flex;
+    margin-left: 10px;
+    margin-top:0;
+}
+
+.account p {
+    display: flex;
+    margin-left: 40px;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top:0;
+}
+
+.form_class .errorlist {
+    display: flex;
+    color: red;
+    font-size: 14px;
+    list-style: none;
+    margin-left: 0;
+}
+.error{
+    color:red;
+    list-style: none;
+}
+.mess li{
+    color:red;
+    list-style: none;
+    font-size:18px;
+}
+
+.accounte{
+    display: flex;
+    margin-left: 10px;
+    margin-top:0;
+    margin-bottom:0;
+
+}
+.accounte a{
+    text-decoration:none;
+    font-size:18px;
+    margin-bottom:0;
+    font-weight:600;
+    transition:0.3 ease;
+}
+.accounte a:hover{
+    background-color: rgb(109, 109, 238);
+    color:white;
+    padding:2px;
+    border-radius:2px;
+
+}
+.dd{
+    top:0;
+   background-color:#9b8356;
+}
+
+.dd .logo{
+    background-color:#9b8356;}
+/* mobile view */
+@media only screen and (max-width: 600px) {
+    .container {
+        padding: 10px;
+        width: 100%; 
+    }
+
+    .myform {
+        width: 90%; 
+        padding: 20px; 
+    }
+
+    .submit_button {
+        width: 100%; 
+    }
+
+    .form_class {
+        padding: 8px; 
+    }
+
+    .form_class label {
+        font-size: 16px; 
+    }
+
+    .form_class input[type='text'],
+    .form_class input[type='password'],
+    .form_class input[type='email'] {
+        font-size: 16px; 
+    }
+
+    button {
+        font-size: 14px; 
+    }
+}
+
 .hero-1{
     width: fit-content;
     position: relative;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    opacity: 0.7;
-}
-.my-form{
-    border-radius: 25px;
-    margin: 20px;
-    padding: 20px;
-    border: transparent;
-}
-.my-form label{
-    font-size: 1.2rem;
-    color: #fff;
-}
-.my-input{
-    padding: 10px;
-    border-radius: 25px;
-    margin: 20px;
-    width: 30%;
-}
-.my-submit{
-    padding: 10px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    background-color:olive;
-    color: #fff;
-    border-radius: 25px;
-    width: 15%;
-    border: transparent;
-}
-.div-1{
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-}
-.div-1 h3{
-    color: black;
-}
-.div-1 a{
-    color: blue;
-}
-.register-btn{
-    padding: 20px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    background-color:orangered;
-    color: #fff;
-    border-radius: 25px;
-    width: 20%;
-    border: transparent;
-}
-.register-btn a{
-    text-decoration: none;
-    color: #fff;
-}
-.myform{
     
-    border-radius: 25px;
-    margin: 20px;
-    padding: 20px;
-}
-.myform label{
-    font-size: 1.2rem;
-    display: block;
-    color: #fff; 
-}
-.myform input{
-    padding: 10px;
-    border-radius: 25px;
-    margin: 20px;
-    width: 40%;
-}
-.myform div{
-    color: #fff;
-}
-.myform div ul{
-    list-style-type: none;
 }
 .back-btn{
-    color: #fff;
-    background:rgb(82, 75, 60);
-    border: transparent;
-    border-radius: 25px;
-    padding: 5px;
+    margin-top:5px;
+    margin-left:40px;
+    width:100px;
+   
+    color:white;
+    
 }
 .back-btn a{
-    text-decoration: none;
-    color: #fff;
+    color:white;
+    text-decoration:none;
+    display:flex;
+    text-align: center;
+    padding:4px;
+    cursor: pointer;
+    
+
+}
+.back-btn:hover{
+    background-color: rgb(117, 117, 250);
+    color:white;
 }
 .logo{
     margin-left: auto;
     margin-right: auto;
     display: block;
     max-width: 15%;
+    
+}
+.dd{
+    top:0;
+   background-color:#9b8356;
+}
+
+.dd .logo{
+    background-color:#9b8356;
 }
 @media screen and (max-width:676px) {
     .my-input{
@@ -120,5 +269,15 @@ html{
     }
     .logo{
         max-width: 40%;
+    }
+    .back-btn{
+        display: block;
+        max-width:40%;
+        font-size:14px;
+        margin-left: 0;
+    }
+    .back-btn a{
+        font-size: 12px;
+        padding:2px;
     }
 }
