@@ -2,28 +2,51 @@
 {%load static%}
 
 {%block content%}
+<style>
+   
+</style>
 <div class="cart-items">
-        {%for order in order_item %}
-            <div class="items-cont">
-                <img src={{order.product.product_image.url}} class="item-img">
-                <div class="items">
-                    <div class="product-info">
-                        <p>Product Name: {{order.product.product_name}}</p>
-                        <p>Price: Kshs: {{order.price}}</p>
-                        <p>Quantity: {{order.quantity}}</p>
-                        <p>Total: Kshs: {{order.total}}</p>
-                    </div>
-                    <div class="product-info">
-                        <p>Destination Details: {{order.order.shipping_details}}</p>
-                        <p>Shipping Details: {{order.shipping_status}}</p>
-                        <p>Payment Status: {{order.payment_status}}</p>
-                    </div>
+    {% for order in order_item %}
+    <div class="items-cont">
+        <div class="product_image">
+            <img src="{{ order.product.product_image.url }}">
+        </div>
+        <div class="items">
+            <div class="product-info">
+                <div class="username">
+                
+
+                </div>
+                <div class="product_name">
+                    Product Name: {{ order.product.product_name }}
+                </div>
+                <div class="product_price">
+                    Price: Kshs: {{ order.price }}
+                </div>
+                <div class="product_quantity">
+                    Quantity: {{ order.quantity }}
+                </div>
+                <div class="totals">
+                    Total: Kshs: {{ order.total }}
                 </div>
             </div>
-            {% empty %}
-            <center>
-                <p>No Current Orders</p>
-            </center>
-        {%endfor%}
+            <div class="product-info">
+                <div class="destination">
+                    Destination Details: {{ order.order.shipping_details }}
+                </div>
+                <div class="shipping_details">
+                    Shipping Details: {{ order.shipping_status }}
+                </div>
+                <div class="payment_status">
+                    <p>Payment Status: {{ order.payment_status }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <center>
+        <p>No Current Orders</p>
+    </center>
+    {% endfor %}
 </div>
 {%endblock%}
