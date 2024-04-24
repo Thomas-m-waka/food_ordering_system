@@ -1,9 +1,7 @@
 {% extends 'main/base.html' %}
 {%load static%}
-
-{% block background %}
-    <!-- Your welcome section content goes here -->
-    <div class="welcome-section">
+{%block content%}   
+<div class="welcome-section">
         <h1>Welcome to Deox</h1>
         <p>Discover Culinary Excellence </p>
         <button class="book-table">
@@ -12,34 +10,17 @@
             </a>
         </button>
     </div>
-    <img src="{% static 'images/65a519f9bfc58fdf651ed50c_wepik-export-20240101054233ngyx 1-p-800.webp'%}" alt="hero1" class="home-img">
-    <div class="slideshow-container">
-        <img class="slide" src="{% static 'images/65a519f9bfc58fdf651ed50c_wepik-export-20240101054233ngyx 1-p-800.webp'%}" alt="Slide 1">
-        <img class="slide" src="{% static 'images/659ce96c0dc71213732c6353_image-p-800.webp'%}" alt="Slide 2">
-        <img class="slide" src="{% static 'images/6596781d35301c9629492316_image-p-800.webp'%}" alt="Slide 3">
-    </div>    
-{% endblock %}
-
-{%block content%}
-   <div class="welcome-more">
-    <image src="{% static 'images/659cfc3ac1cad500c459bee1_Rectangle 29-p-800.webp'%}", alt="our-restaurant" class="restaurant1-img"></image>
-    <div class="welcome-about">
-        <h3>WELCOME TO Deox</h3>
-        <h2>Where Every Meal is an Unforgetable Experience</h2>
-        <p>Step into a realm where culinary artistry meets unparalleled ambiance, and every meal transcends mere sustenance to become an unforgettable experience. This is not just a dining establishment; it is a sanctuary for the senses, where flavors dance on the palate and the ambiance is carefully curated to elevate the dining journey.</p>
-        <button class="book-table">
-            <a href="{%url 'contact'%}">Contact Us
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-        </button>
-    </div>
-   </div> 
-   <div class="our-menus">
-        <h1>Our Menus</h1>
-        <p>Our commitment to excellence extends beyond the plate, creating an atmosphere that lingers in the memory, making your visit truly exceptional.</p>
-        <div class="variant-menus">
+    <img src="{% static 'images/display_image.jpeg'%}" alt="hero1" class="home-img">
+    <aside class="sidebar">
+     
+    </aside>
+   <div class="our-services">
+    <h2>Our Menus</h2>
+   </div>
+    <div class="our-menus">
+       <div class="variant-menus">
             <div class="breakfast-menu">
-                <h3>Breakfast Menu</h3>
+                <h4>Breakfast Menu</h4>
                 <button class="book-table">
                     <a href="{%url 'menu'%}">View Menu
                         <i class="fa-solid fa-chevron-right"></i>
@@ -47,7 +28,7 @@
                 </button>
             </div>
             <div class="brunch-menu">
-                <h3>Brunch Menu</h3>
+                <h4>Lunch Menu</h4>
                 <button class="book-table">
                     <a href="{%url 'menu'%}">View Menu
                         <i class="fa-solid fa-chevron-right"></i>
@@ -55,63 +36,18 @@
                 </button>
             </div>
             <div class="lunch-menu">
-                <h3>Lunch Menu</h3>
+                <h4>Dinner Menu</h4>
                 <button class="book-table">
                     <a href="{%url 'menu'%}">View Menu
-                        <i class="fa-solid fa-chevron-right"></i>
+                        
                     </a>
                 </button>
             </div>
-            <div class="dinner-menu">
-                <h3>Dinner Menu</h3>
-                <button class="book-table">
-                    <a href="{%url 'menu'%}">View Menu
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </a>
-                </button>
-            </div>
+
         </div>
     </div>
-    <div class="galleries">
-        <h2>Restaurant TNC Galleries</h2>
-        <p>Capturing Culinary Moments: A Visual Feast of Ambiance, Cuisine, and Memorable Gatherings</p>
-        <div class="galleries-container">
-            <div class="pic-1">
-                <img src="{%static 'images/659bb29c133d5685daf6a0ce_Rectangle 35.png'%}", alt="TNC Delicacies", class="my-pic">
-                <button class="galleries-info">Grilled chicken with spices</button>
-            </div>
-            <div class="pic-2">
-                <img src="{%static 'images/659bb2e821eecb2ee00a83a3_Rectangle 49.png'%}", alt="TNC Delicacies", class="my-pic">
-                <button class="galleries-info">Chicken breast with sauce</button>
-            </div>
-            <div class="pic-3">
-                <img src="{%static 'images/659bb29c182168928ff13c1a_Rectangle 53.png'%}", alt="TNC Delicacies", class="my-pic">
-                <button class="galleries-info">Food with broccoli</button>
-            </div>
-            <div class="pic-4">
-                <img src="{%static 'images/659bb29ca3e796a3653287a5_Rectangle 54.png'%}", alt="TNC Delicacies", class="my-pic">
-                <button class="galleries-info">Spinach & spinacj with fork</button>
-            </div>
-            <div class="pic-5">
-                <img src="{%static 'images/659bb29ca5a2f97fb6070cf1_Rectangle 48.png'%}", alt="TNC Delicacies", class="my-pic">
-                <button class="galleries-info">Baked potato circles</button>
-            </div>
-            <div class="pic-6">
-                <img src="{%static 'images/659bb29c4ee19afb1481f3bd_Rectangle 52.png'%}", alt="TNC Delicacies", class="my-pic">
-                <button class="galleries-info">Grilled baked mackerel</button>
-            </div>
-            <div class="pic-7">
-                <img src="{%static 'images/659bb29cfe2bbc52ef472dc8_Rectangle 51.png'%}", alt="TNC Delicacies", class="my-pic">
-                <button class="galleries-info">Soba with beef</button>
-            </div>
-            <div class="pic-8">
-                <img src="{%static 'images/659bb29c5297879c5638619c_Rectangle 50.png'%}", alt="TNC Delicacies", class="my-pic">
-                <button class="galleries-info">Vietnamese noodle</button>
-            </div>
-        </div>
-    </div>
-    <div class="our-products">
-        <h2><u>OUR PRODUCTS</u></h2>
+<div class="our-products">
+        <h2>OUR PRODUCTS</h2>
         <form method=POST action ="{% url 'search-products'%}">
             {% csrf_token%}
             <input type="search" name="searched" class="search-input" placeholder="Search Products">
@@ -119,41 +55,59 @@
             <button type="submit" class="search-btn">Search</button>
         </form>
     </div>
-    
-    <div class="products-container">
-        {%for product in products%}
-        <div class="products">
-            <img src={{product.product_image.url}} class="product-img">
-            <h2>Name: {{product.product_name}}</h2>
-            <h3>Category: {{product.category}}</h3>
-            <h3>Price: Kshs {{product.product_price}}</h3>
-            <p>{{product.description}}</p>
+<div class="product_gallery_container">
+    <div class="product_gallery">
+            {%for product in products%}
+        <div class="product">
+            <div class="product_img">
+                <img src={{product.product_image.url}}>
+            </div>
+            <div class="product_name">
+                Name: {{product.product_name}}
+            </div>
+            <div class="product_category">
+                {{product.description}}
+            </div>
+            <div class="product_price">
+                Price: Kshs {{product.product_price}}
+            </div>
             {%if user.is_authenticated%}
-                <button class="add-cart">
-                    <a href="{%url 'add-to-cart' product.id %}">Add To Cart</a>
-                </button>
-            {%else%}
-                <button class="add-cart">
-                    <a href="{%url 'login'%}">Add To Cart</a>
-                </button>
-            {%endif%}
+            <div class="add_cart">
+                <button><a href="{%url 'add-to-cart' product.id %}">Add To Cart</a></button>
+            </div>
+            {% else %}
+            <div class="add_cart">
+                <button><a href="{%url 'login' %}">Add To Cart</a></button>
+            </div>
+            {% endif%}
+
         </div>
-        {%endfor%}
+        {% endfor %}
     </div>
+</div>    
     <div class="our-services">
-        <h2><u>TESTIMONIALS</u></h2>
+        <h2>TESTIMONIALS</h2>
         <h3>Experience of our customers.</h3>
     </div>
-    <div class="testimonial-container">
-        {%for review in reviews%}
-            <div class="my-testimonials">
-                <img src={{review.review_image.url}} class="testimonial-img">
-                <div class="indiv-testimonial">
-                    <p>{{review.customer.username}}</p>
-                    <p>{{review.description}}</p>
+   <div class="product_gallery_container">
+        <div class="product_gallery">
+            {%for review in reviews%}
+            <div class="product">
+                <div class="product_img">
+                    <img src={{review.review_image.url}}>
+                </div>
+                <div class="product_name">
+                    {{review.customer.username}}
+                </div>
+                <div class="product_category">
+                    {{product.description}}
+                </div>
+                <div class="product_price">
+                    {{review.description}}
                 </div>
             </div>
-        {%endfor%}
-    </div>
+            {% endfor %}
+        </div>
+    </div>    
     
 {%endblock%}
