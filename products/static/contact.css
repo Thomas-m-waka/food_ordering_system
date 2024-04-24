@@ -2,12 +2,16 @@
     background: url('images/659d2ff6d4836a19ed9210f7_Rectangle\ 63.webp');
     background-size: cover;
     background-position: center;
-    height: 250px;
+    
+    height: 220px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: #fff;   
+}
+.contact-header h2{
+    margin-top:100px;
 }
 .contact-info{
     display: flex;
@@ -37,24 +41,16 @@
     width: 300px;
 }
 .div1, .div2, .div3 h3{
-    font-size: 2.5rem;
+    font-size: 1px;
 }
 .div1, .div2, .div3 p{
-    font-size: 1.2rem;
+    font-size: 18px;
 }
 .contacts-div{
     text-align: center;
     margin: 20px;
 }
-.contact-form{
-    width: 70%;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    background-color:rgb(240, 213, 204) ;
-    border-radius: 25px;
-}
+
 .my-inputs{
     width: 500px;
     padding: 20px;
@@ -178,7 +174,8 @@
 @media screen and (max-width:992px) {
     .contact-header{
         width: 100%;
-        height: 200px;
+        margin-top:20px;
+        height: 150px;
     }
     .contact-info{
         margin: 10px;
@@ -189,27 +186,26 @@
     .gallery-container{
         grid-template-columns: repeat(2, 1fr);
     }
-    .contact-form{
-        margin-top: 10px;
-    }
+    
 }
 @media screen and (max-width:550px) {
     .contact-header{
         width: 100%;
-        height: 150px;
+        
+        height: 120px;
+    }
+    .contact-header h2{
+        margin-top: 50px;;
     }
     .contact-info{
+        display:flex;
         flex-direction: column;
         justify-items: center;
         align-items: center;
-        margin: 20px;
+        margin-top: 20px;
     }
-    .div1,.div2,.div3{
-        width: 300px;
-    }
-    .contact-form{
-        width: 400px;
-    }
+    
+   
     .my-inputs{
         width: auto;
     }
@@ -256,4 +252,58 @@
     .image7{
         max-width: 95%;
     }
+}
+
+
+
+.instagram{
+    display:flex;
+    justify-content: center;
+    background:linear-gradient(to right,blue,rgb(151, 74, 218));
+    
+}
+.instagram h1{
+    padding:4px;
+    color:white;
+    
+}
+
+.gallery-container {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.more-gallery {
+margin: 10px;
+}
+
+.image-container {
+position: relative;
+width: 200px; /* Adjust as needed */
+height: 200px; /* Adjust as needed */
+}
+
+.image-container img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.my-img {
+position: absolute;
+bottom: 10px; /* Adjust as needed */
+right: 10px; /* Adjust as needed */
+}
+
+.my-img a {
+color: white;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+.image-container {
+width: 150px; /* Adjust as needed */
+height: 150px; /* Adjust as needed */
+}
 }
