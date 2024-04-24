@@ -1,3 +1,5 @@
+
+
 {%load static%}
 <!DOCTYPE html>
 <html>
@@ -11,16 +13,57 @@
         <link rel="stylesheet" href="{% static 'baze.css' %}">
     </head>
     <body>
-        {%if messages %}
-            {%for message in messages%}
-                {{message}}
-            {%endfor%}
-        {%endif%}
 
-        {%block content%}
+
+    <style>
+        .nai_messages {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: green; /* Set the background color to green */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            z-index: 1000;
+        }
+        
+        .flash-message {
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            animation: fadeOut 5s ease forwards;
+        }
+        
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+</style>
+<div class="nai_messages">
+    {% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div class="flash-message">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</div>        
+       {%block content%}
 
         {%endblock%}
         <script src="{%static 'baze.js'%}"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Find the flash success messages and set a timeout for each
+                const successMessages = document.querySelectorAll('.flash-message');
+                successMessages.forEach(message => {
+                    setTimeout(() => {
+                        message.style.display = 'none';
+                    }, 5000); // Message disappears after 5 seconds
+                });
+            });
+        </script>
     </body>
 </html>
-
