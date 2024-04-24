@@ -8,6 +8,16 @@ from django_daraja.mpesa.core import MpesaClient
 from phonenumber_field.phonenumber import PhoneNumber
 from itertools import chain
 from decimal import Decimal
+from  django.db.models import Q 
+
+
+
+
+
+
+
+
+
 
 def account(request):
 
@@ -27,13 +37,22 @@ def send_message(request):
         return render(request,"main/send_message.html")
 def search_products(request):
     if request.method == "POST":
-        searched = request.POST['searched']
-        products = Products.objects.filter(product_name__contains = searched) 
+        searched = request.POST.get('searched', '')
+        products = Products.objects.filter(
+            Q(product_name__iexact=searched) | Q(product_name__icontains=searched)
+        )
         print(products)
-        return render(request, 'main/search_products.html',
-        {'searched':searched, 'products': products})
+
+        if products:
+            return render(request, 'main/search_products.html',
+                          {'searched': searched, 'products': products})
+        else:
+            message = f"No products found for '{searched}'."
+            return render(request, 'main/search_products.html',
+                          {'searched': searched, 'message': message})
     else:
-        return render(request, 'main/search_products.html',{})
+        return render(request, 'main/search_products.html', {})
+
     
 def review_order(request,order_id):
     order = OrderItems.objects.get(pk=order_id)
@@ -67,14 +86,18 @@ def update_delivered(request, order_id):
     order.save()
     return redirect('review-orders')
 def completed(request):
-    order_item = OrderItems.objects.filter(
-        customer = request.user,
-        reviewed_status = True,
+    order_items = OrderItems.objects.filter(
+        customer=request.user,
+        reviewed_status=True,
     )
-    for item in order_item:
-        review = Reviews.objects.get(order_id = item.id)
-    return render(request, 'main/completed.html',{'order_item':order_item,"review":review})
 
+    reviews = []
+
+    for item in order_items:
+        review = Reviews.objects.get(order_id=item.id)
+        reviews.append(review)
+
+    return render(request, 'main/completed.html', {'order_items': order_items, 'reviews': reviews})
 def review_orders(request):
     order_items = OrderItems.objects.filter(
         customer = request.user,
@@ -84,6 +107,7 @@ def review_orders(request):
     )
     return render(request,"main/review_orders.html",{'order_items':order_items})
 
+@login_required
 def delivered(request):
     order_item = OrderItems.objects.filter(
         customer = request.user,
@@ -95,22 +119,27 @@ def delivered(request):
     return render(request, 'main/delivered.html',{'order_item':order_item})
 def in_transit(request):
     order_item = OrderItems.objects.filter(
+        customer=request.user, 
         payment_status = "Payment Succesful",
         shipping_status = "Packed,Ready for Delivery",
         delivery_status = False,
     )
     return render(request, 'main/in_transit.html',{'in_transit':in_transit,'order_item':order_item})
+
 def pending_payment(request):
     order_item = OrderItems.objects.filter(
          customer = request.user,
          payment_status = "Pending Confirmation"
     )
     return render(request, 'main/pending_payment.html',{'order_item':order_item})
+
+
 def payment(request):
     payment = Payments.objects.all().last()
     #latest('order_no')
+    context ={'payment':payment}
     print(payment)
-    return render(request,"main/payment.html",{'payment':payment})
+    return render(request,"main/payment.html",context)
 
 def payments(request):
     payment = Payments.objects.all().last()
@@ -120,25 +149,50 @@ def payments(request):
     # Use a Safaricom phone number that you have access to, for you to be able to view the prompt.
     number = payment.mobile
     pho_number = str(number)
-    phone_number = "0" + pho_number[4:]
     amount = int(payment.amount)
+    phone_number = "0" + pho_number[4:]
+   
+    
     account_reference = 'reference'
     transaction_desc = 'Description'
     callback_url = 'https://api.darajambili.com/express-payment'
     response = cl.stk_push(phone_number, amount, account_reference, transaction_desc, callback_url)
-    return HttpResponse(response)
-'''
+    
+    if response.status_code == 200:
+        try:
+            # Try to parse the JSON content from the response
+            json_data = response.json()
+            
+            # Check if the response indicates success
+            if isinstance(json_data, dict) and json_data.get('ResponseCode') == '0':
+                # Redirect to the "my-orders" template upon success
+                return redirect('my-orders')  # Replace 'my-orders' with the actual URL or view name for your "my-orders" template
+            else:
+                # Handle the case when the JSON response is not successful
+                return HttpResponse(json_data)
+        except ValueError:
+            # Handle the case when the response content is not valid JSON
+            return HttpResponse("Error: Unable to parse JSON response.")
+    else:
+        # Handle the case when the response status code is not 200
+        return HttpResponse(f"Error: Unexpected status code - {response.status_code}")
 
-def  payments(request):
-    cl = MpesaClient()
-    phone_number = '0791508494'
-    amount = 1
-    account_reference ='reference'
-    transaction_desc = 'Description'
-    callback_url = 'https://api.darajambili.com/express-payment'
-    response = cl.stk_push(phone_number,amount,account_reference,transaction_desc,callback_url)
-    return HttpResponse(response)
-'''
+
+
+
+    
+
+
+
+# def  payments(request):
+#     cl = MpesaClient()
+#     phone_number = '0791508494'
+#     amount = 1
+#     account_reference = 'reference'
+#     transaction_desc = 'Description'
+#     callback_url = 'https://api.darajambili.com/express-payment'
+#     response = cl.stk_push(phone_number, amount, account_reference, transaction_desc, callback_url)
+#     return HttpResponse(response)
 #When  calculating the shipping  feee of  the customer 
 def calculate_shipping_fee(total_amount):
     if total_amount == 0:
@@ -199,7 +253,7 @@ def place_order(request,cart_id):
             #clear the cart
             cart.delete()
         else:
-            messages.success(request,("Form is invalid"))
+            messages.error(request,("Form is invalid"))
         return redirect('payment')
     else:
         form = OrdersForm()
@@ -254,10 +308,11 @@ def place_order_from_cart(request):
 
             # Clear the cart
             cart.delete()
+            messages.success(request, "Your order has been placed successfully!")
 
             return redirect('payment')
         else:
-            messages.success(request, "Form is invalid")
+            messages.error(request, "Form is invalid")
 
     else:
         form = OrdersForm()
@@ -267,49 +322,75 @@ def place_order_from_cart(request):
     return render(request, "main/place-order.html", {'cart': cart, 'form': form, 'total_cost': total_cost, 'shipping_fee': shipping_fee, 'total_amount_to_pay': total_amount_to_pay})
 
 @login_required
-def add_to_cart(request,product_id):
-    product = Products.objects.get(id=product_id)
+def add_to_cart(request, product_id):
+    try:
+        product = Products.objects.get(id=product_id)
+    except Products.DoesNotExist:
+        messages.error(request, "Product not found.")
+        return redirect('/')  # Or any other appropriate redirection
+
     quantity = 1
     Cart.objects.create(
-        product = product,
-        user = request.user,
-        session_key = request.session.session_key,
+        product=product,
+        user=request.user,
+        session_key=request.session.session_key,
         price=product.product_price,
-        quantity = quantity,
-        total = product.product_price * quantity,
-        )
+        quantity=quantity,
+        total=product.product_price * quantity,
+    )
+    messages.success(request, "Product added to cart successfully.")
+    return redirect('/')
+
+
+@login_required
+def remove_from_cart(request, cart_id):
+    try:
+        item = Cart.objects.get(pk=cart_id)
+    except Cart.DoesNotExist:
+        messages.error(request, "Item not found in cart.")
+        return redirect('cart')  # Or any other appropriate redirection
+
+    if request.user == item.user:
+        item.delete()
+        messages.success(request, "Item removed from cart successfully.")
+    else:
+        messages.error(request, "You do not have permission to remove this item from the cart.")
+
     return redirect('cart')
 
 @login_required
-def remove_from_cart(request,cart_id):
-    item = Cart.objects.get(pk=cart_id)
-    if request.user == item.user:
-        item.delete()
-    return redirect('cart')
-@login_required
-def update_cart_quantity(request,cart_id):
-    cart = Cart.objects.get(pk=cart_id)
-    form = CartForm(request.POST)
+def update_cart_quantity(request, cart_id):
+    try:
+        cart = Cart.objects.get(pk=cart_id)
+    except Cart.DoesNotExist:
+        messages.error(request, "Item not found in cart.")
+        return redirect('cart')  # Or any other appropriate redirection
+
+    form = CartForm(request.POST, instance=cart)
     total = 0.00
     if form.is_valid():
         quantity = form.cleaned_data['quantity']
         cart.quantity = quantity
         cart.total = quantity * cart.price
         cart.save()
+        messages.success(request, "Quantity updated successfully.")
         return redirect('cart')
-    return render(request, 'main/quantity_update.html',{'cart':cart, 'form':form,'total':total})
+
+    return render(request, 'main/quantity_update.html', {'cart': cart, 'form': form, 'total': total})
+
+
 @login_required
 def cart(request):
-    #Reviews.objects.all().delete()
-    cart_items = Cart.objects.filter(
-        user = request.user,
-        #session_key = request.session.session_key
-    )
+    cart_items = Cart.objects.filter(user=request.user)
     total = sum([item.price * item.quantity for item in cart_items])
+    
+    # Calculate the total number of items in the cart
+    items_count = sum(cart_item.quantity for cart_item in cart_items)
+
     # Check if the cart is empty
     is_cart_empty = not cart_items.exists()
 
-    return render(request,'main/cart.html',{'cart_items':cart_items,'total':total,'is_cart_empty':is_cart_empty})
+    return render(request, 'main/cart.html', {'cart_items': cart_items, 'total': total, 'is_cart_empty': is_cart_empty, 'items_count': items_count})
 
 def update_product(request,product_id):
     product = Products.objects.get(pk=product_id)
@@ -387,33 +468,73 @@ def index(request):
     products = Products.objects.all()
     services = Services.objects.all()
     return render(request,'main/index.html',{'services':services,"products":products,'reviews':reviews})
+    
 def admin_reviews(request):
     review_item = Reviews.objects.all()
 
     return render(request,"main/admin_review.html",{'review_item':review_item})
 
-def admin_update_payment(request,record_id):
-    order = Payments.objects.filter(order_no_id=record_id)
-    all_order = order.values()
-    print(all_order)
-    k=all_order[0]
-    print(k)
-    my_id = k["order_no_id"]
-    my_order = All_Orders.objects.filter(id=my_id)
-    m_order = my_order.values()
-    m = m_order[0]
-    our_id = m["id"]
-    print(our_id)
-    our_order = OrderItems.objects.filter(order_id=my_id)
-    for item in our_order:
-        item.payment_status = "Payment Succesful"
-        item.shipping_status = "Packed,Ready for Delivery"
-        item.save()
-    #print(my_order)
-    return redirect('admin-payments')
+# import json
+# import requests
+# from django.shortcuts import redirect
+# from django.contrib import messages
+# from .models import Payments, All_Orders, OrderItems  # Import your models here
+
+# def send_sms(phone_number, message):
+#     url = "https://sms.textsms.co.ke/api/services/sendsms"
+#     payload = {
+#         "mobile": f'+254{phone_number}',
+#         "response_type": "json",
+#         "partnerID": '9785',
+#         "shortcode": 'TextSMS',
+#         'apikey': '7d0971b0a315bf420be231871cd1ef3c',
+#         "message": message
+#     }
+#     headers = {
+#         'Content-Type': 'application/json'
+#     }
+#     response = requests.post(url, headers=headers, data=json.dumps(payload))
+#     return response.ok
+
+# def admin_update_payment(request, record_id):
+#     try:
+#         # Retrieve the payment record
+#         payment = Payments.objects.get(order_no_id=record_id)
+
+#         # Update payment status
+#         payment.payment_status = "Payment Successful"
+#         payment.save()
+
+#         # Retrieve necessary details for sending the confirmation message
+#         phone_number = payment.mobile
+#         username = payment.customer.username
+
+#         print(username)
+
+#         # Compose the payment confirmation message
+#         message = f"Dear {username}, Payment has been received. Your order will be delivered shortly. Thank you for ordering at DEOX."
+
+#         # Send the payment confirmation message
+#         response = send_sms(phone_number, message)
+#         print(response)
+
+#         if response:
+#             # If the message was sent successfully, redirect to the admin payments page
+#             messages.success(request, "Payment confirmation message sent successfully.")
+#         else:
+#             # If sending the message fails, display an error message
+#             messages.error(request, "Failed to send payment confirmation message.")
+
+#     except Payments.DoesNotExist:
+#         # Handle case where the payment record does not exist
+#         messages.error(request, "Payment record does not exist.")
+
+#     return redirect('admin-payments')
+
+
 def admin_payments(request):
-    payments = Payments.objects.all()
-    orders = All_Orders.objects.all()
+    payments = Payments.objects.all().order_by('-id')  
+    orders = All_Orders.objects.all().order_by('-id')  
     return render(request,"main/admin_payment.html",{'payments':payments,'orders':orders})
 
 def admin_completed(request):
@@ -453,6 +574,26 @@ def admin_pending_payment(request):
         payment_status = "Pending Confirmation"
     )
     return render(request, 'main/admin_pending_payment.html',{'order_items':order_items})
+def admin_update_payment(request,record_id):
+    order = Payments.objects.filter(order_no_id=record_id)
+    all_order = order.values()
+    print(all_order)
+    k=all_order[0]
+    print(k)
+    my_id = k["order_no_id"]
+    my_order = All_Orders.objects.filter(id=my_id)
+    m_order = my_order.values()
+    m = m_order[0]
+    our_id = m["id"]
+    print(our_id)
+    our_order = OrderItems.objects.filter(order_id=my_id)
+    for item in our_order:
+        item.payment_status = "Payment Succesful"
+        item.shipping_status = "Packed,Ready for Delivery"
+        item.save()
+    #print(my_order)
+    return redirect('admin-payments')
+
 def admin_orders(request):
     order_items = OrderItems.objects.all()
     print(order_items)    
