@@ -6,6 +6,24 @@
         <link rel="stylesheet" href="{% static 'navbar.css'%}">
     </head>
     <body>
+    
+<style>
+    .nai_messages{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>        
+<div class="nai_messages">
+    {% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div class="flash-message">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</div>
+
         <nav>
             <div class="my-logo">
                 <img src="{% static 'images/White_Deox_Logo@4x.png'%}" class="logo">
@@ -43,22 +61,21 @@
                             {%endif%}
                         </button>
                         <hr>
+                        {%if user.is_authenticated%}
                         <button class="account-my-btn">
+                          
                             <i class="fa-solid fa-user"></i>
-                            {%if user.is_authenticated%}
+                        
                                     <a href="{% url 'my-account'%}">My Account</a>
-                            {%else%}
-                                    <a href="{% url 'login'%}">My Account</a>
-                            {%endif%}
+                        
                         </button>
+                        {%endif%}
+                        {%if user.is_authenticated%}
                         <button class="account-my-btn">
                             <i class="fa-solid fa-box"></i>
-                            {%if user.is_authenticated%}
-                                    <a href="{% url 'my-orders'%}">My Orders</a>
-                            {%else%}
-                                    <a href="{% url 'login'%}">My Orders</a>
-                            {%endif%}
+                            <a href="{% url 'my-orders'%}">My Orders</a>                          
                         </button>
+                        {%endif%}
                         {%if user.is_superuser%}
                             <button class="account-my-btn">
                                 <a href="{% url 'customers'%}">ADMIN</a>
@@ -75,6 +92,9 @@
                             <a href="{%url 'cart'%}">
                                 <i class="fa-solid fa-shopping-cart"></i>
                             </a>
+                            <div class="cart-count">
+                                {{ items_count }}
+                            </div>
                         {%else%}
                             <a href="{%url 'login'%}">
                             <i class="fa-solid fa-shopping-cart"></i>
@@ -88,6 +108,9 @@
                     <a href="{%url 'cart'%}">
                         <i class="fa-solid fa-shopping-cart fa-2x"></i>
                     </a>
+                    <div class="cart-count">
+                        {{ items_count }}
+                    </div>
                 {%else%}
                     <a href="{%url 'login'%}">
                     <i class="fa-solid fa-shopping-cart fa-2x"></i>
@@ -98,6 +121,7 @@
                 <i class="fa fa-bars fa-2x"></i>
             </button>
         </nav>
+       
         <aside class="sidebar">
             <br><br>
             <ul class="mylinks">
@@ -136,9 +160,14 @@
                         <button class="account-my-btn">
                             <i class="fa-solid fa-user"></i>
                             {%if user.is_authenticated%}
+                                    <a href="{% url 'my-account'%}">My Account</a>
+                            {%endif%}
+                        </button>
+                        <button class="account-my-btn">
+                            <i class="fa-solid fa-user"></i>
+                            {%if user.is_authenticated%}
                                     <a href="{% url 'my-orders'%}">My Orders</a>
-                            {%else%}
-                                    <a href="{% url 'login'%}">My Orders</a>
+                                                               
                             {%endif%}
                         </button>
                         <button class="account-my-btn">
@@ -158,6 +187,19 @@
                 </li>
             </ul>
         </aside>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var currentPath = window.location.pathname;
+                var links = document.querySelectorAll('.links li a');
+        
+                links.forEach(function(link) {
+                    if (link.getAttribute('href') === currentPath) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        </script>
+
         <script src="{% static 'navbar.js'%}"></script>
     </body>
 </html>
