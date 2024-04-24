@@ -23,24 +23,37 @@ def enter_username(request):
 
     return render(request, 'authenticate/enter_username.html')
 
+from django.shortcuts import render
+from django.contrib.auth.models import User
+from .models import Profile
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
+
 def get_phone(request):
     if request.method == 'POST':
         username = request.POST.get('username')
-        print(username)
-        # Get the user associated with the entered username
-        user = User.objects.get(username=username)
-        print(user.pk)
-        # Get the profile of the user
-        profile = Profile.objects.get(customer_id=user.pk)
-        print(profile)
-        # retreive the  phone number in the session
-        phone_number = str(profile.mobile)
-        print(phone_number)
-        # Store the phone number in the session
-        request.session['phone_number'] = phone_number
-        request.session['username'] = username
-        return render(request, 'authenticate/get_phone.html',{'username':username, 'phone_number':phone_number})
+        try:
+            # Get the user associated with the entered username
+            user = User.objects.get(username=username)
+            
+            # Get the profile of the user
+            profile = Profile.objects.get(customer_id=user.pk)
+            
+            # Retrieve the phone number from the profile
+            phone_number = str(profile.mobile)
+            
+            # Store the phone number and username in the session
+            request.session['phone_number'] = phone_number
+            request.session['username'] = username
+            
+            return render(request, 'authenticate/get_phone.html', {'username': username, 'phone_number': phone_number})
+        
+        except ObjectDoesNotExist:
+            # If the user does not exist, display an error message
+            messages.error(request, "User not found.")
     
+    return render(request, 'authenticate/enter_username.html')
+
 def send_verification_code(request):
     if request.method == 'POST':
         # Retrieve the username from the session
@@ -76,27 +89,33 @@ def send_verification_code(request):
         # Render the form to input phone number
         return render(request, 'authenticate/generate_code.html')
     
+from django.contrib import messages
+
 def reset_password(request):
     if request.method == 'POST':
-        username = request.session['username']
-        print(username)
-        # Retrieve the user object associated with the username
+        username = request.session.get('username')
+        if not username:
+            # If username is not in session, handle the error
+            messages.error(request, "Username not found.")
+            return redirect('login')  # Redirect to login page or any other appropriate page
+            
         user = User.objects.get(username=username)
-        print(user)
         form = SetPasswordForm(user, request.POST)
         if form.is_valid():
-            print('hello')
             form.save()
-            update_session_auth_hash(request, form.user)# Keep the user logged in
-            print(form.user)
+            update_session_auth_hash(request, user)  # Keep the user logged in
+            messages.success(request, "Password reset successfully.")
             return redirect('index')
         else:
-            print(form.errors)
             # If the form is invalid, render the form again with appropriate error messages
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"Error in {field}: {error}")
             return render(request, 'authenticate/reset_password.html', {'form': form})
     else:
         form = SetPasswordForm(request.user)
     return render(request, 'authenticate/reset_password.html', {'form': form})
+
 
 def generate_verification_code():
     return str(random.randint(10000, 99999))
@@ -185,18 +204,31 @@ def register_user(request):
     else:
         form = RegisterUserForm()
     return render(request,"authenticate/register.html",{'form':form})
+from .forms import LoginForm
+
+
+
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from .forms import LoginForm
 
 def login_user(request):
-    if request.method =="POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        customer = authenticate(request,username=username,password=password)
-        if customer is not None:
-            login(request,customer)
-            return redirect('index')
-        else:
-            messages.success(request,("There was an error,Try again!"))
-            return redirect('login')
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            customer = authenticate(request, username=username, password=password)
+            if customer is not None:
+                login(request, customer)
+                success_message = f"{username} login successful."
+                messages.success(request, success_message)
+                return redirect('index')
+            else:
+                # Invalid credentials
+                messages.error(request, "Invalid username or password. Please try again.")
     else:
-        return render(request,"authenticate/login.html")
+        form = LoginForm()
+    return render(request, "authenticate/login.html", {'form': form})
 
