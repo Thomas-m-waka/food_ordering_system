@@ -9,13 +9,21 @@
         <link rel="stylesheet" href="{%static 'fontawesome-free-6.2.0-web\css\all.min.css'%}">
         <!--stylesheet-->
         <link rel="stylesheet" href="{% static 'home.css' %}">
+        
     </head>
     <body>
-        {%if messages %}
-            {%for message in messages%}
-                {{message}}
-            {%endfor%}
-        {%endif%}
+        <style>
+                .cart-count {
+    background-color: white; /* Change color as needed */
+    color: yellow; /* Text color */
+    border-radius: 50%; /* Make it circular */
+    padding: 4px 8px; /* Adjust padding as needed */
+    font-size: 12px; /* Adjust font size as needed */
+    position: absolute; /* Position it relative to the cart icon */
+    top: -8px; /* Adjust vertical position */
+    right: -8px; /* Adjust horizontal position */
+}
+        </style>
         {%block content%}
 
         {%endblock%}
