@@ -1,0 +1,135 @@
+*{
+    margin:0 auto;
+}
+.div-container{
+    margin-top:80px;
+    height: auto;
+    width:100%;
+}
+.div-container h1{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right,blue,rgb(183, 128, 207));
+    color:white;
+    padding: 5px;
+}
+.div-container a{
+    margin-left:40px;
+    
+}
+.product_gallery {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+}
+
+.product {
+    margin-left: 5px;
+    min-width: 200px; /* Adjust the minimum width as needed */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin-right: 10px; /* Add some space between products */
+    transition: box-shadow 0.3s ease;
+    overflow-x: auto; /* Enable horizontal scrolling for individual products */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+}
+
+.product:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+    border-color: rgb(7, 7, 7);
+}
+
+.product_img img {
+    width: 100%;
+    height:200px;
+    object-fit: cover;
+}
+
+.product_name,
+.product_category,
+.product_price {
+    margin-bottom: 5px;
+}
+.product_price{
+    font-weight: 700;
+    font-size:15px;
+}
+
+.add_cart button {
+    display: flex;
+    background-color: orange;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    width: 100%;
+    font-weight: lighter;
+    cursor: pointer;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: display 0.3s ease;
+}
+
+.product:hover .add_cart button {
+    background-color: orange;
+    color: white;
+    display: block;
+}
+
+.add_cart button:hover {
+    background-color: rgb(223, 152, 20);
+    color: white
+}
+.add_cart a{
+        text-decoration:none;
+        color:white;
+    }
+    .add_cart button:hover{
+        background:linear-gradient(to right, rgb(72, 154, 235),rgb(18, 207, 188));
+
+    }
+/* Desktop CSS */
+@media only screen and (min-width: 768px) {
+    .div-container{
+        height: auto;
+        margin-top:120px;
+    }
+    .product_gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-left: 100px; /* Reset margin-left for desktop */
+    }
+
+    .product {
+        width: calc(20% - 20px); /* Adjust width for desktop */
+        margin-right: 20px;
+        margin-top:20px; /* Add more margin-right for desktop */
+    }
+
+    .add_cart button {
+        display:flex; /* Make add to cart button visible by default on desktop */
+        background-color: orange;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 14px;
+        width: 100%;
+        font-weight: lighter;
+        cursor: pointer;
+        border-radius: 5px;
+        text-transform: uppercase;
+        transition: display 0.3s ease;
+    }
+
+    .product:hover .add_cart button {
+        display: block /* Hide add to cart button on hover on desktop */
+    }
+    .add_cart a{
+        text-decoration:none;
+    }
+}
