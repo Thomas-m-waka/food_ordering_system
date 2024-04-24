@@ -12,31 +12,50 @@
         <!--jquery-->
         <script src="{% static 'jquery/lib/jquery-3.6.0.min.js'%}"></script>
     </head>
+
+    <style>
+.nai_messages {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: green; /* Set the background color to green */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    z-index: 1000;
+}
+
+.flash-message {
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    animation: fadeOut 5s ease forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+
+    </style>
     <body>
         {% include 'main/navbar.html'%}
-        <!-- Background container for navbar and welcome section -->
-        <div class="background-container">
-            {% block background %}
-            {% endblock %}
-        </div>
-
         {%block content%}
         {%endblock%}
         {%include 'main/footer.html'%}
-
-        <script>
-            $(document).ready(function(){
-                var slideIndex = 0;
-                showSlides();
-        
-                function showSlides() {
-                    var slides = $(".slide");
-                    slides.hide();
-                    slideIndex = (slideIndex + 1) % slides.length;
-                    slides.eq(slideIndex).fadeIn();
-                    setTimeout(showSlides, 2000); // Change image every 10 seconds
-                }
-            });
-        </script>
     </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Find the flash success messages and set a timeout for each
+            const successMessages = document.querySelectorAll('.flash-message');
+            successMessages.forEach(message => {
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 3000); // Message disappears after 3 seconds
+            });
+        });
+    </script>
+
 </html>
